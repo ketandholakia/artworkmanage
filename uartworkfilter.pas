@@ -1,0 +1,42 @@
+unit uartworkfilter;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzGroupBar, Data.DB, dbisamtb,
+  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Mask, RzEdit, Vcl.DBCtrls, RzButton, RzRadChk,
+  Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    RzGroupBar1: TRzGroupBar;
+    RzGroup1: TRzGroup;
+    Panel2: TPanel;
+    btnOK: TButton;
+    btnReset: TButton;
+    btnCancel: TButton;
+    Memo1: TMemo;
+    RzGroupController1: TRzGroupController;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    ComboBox1: TComboBox;
+    CheckBox1: TCheckBox;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses uDm, uFrmArtwork, uFrmMain;
+
+end.
