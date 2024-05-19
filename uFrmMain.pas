@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   Data.FmtBcd, FireDAC.Comp.Client, System.Actions, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, RzStatus, Vcl.ExtCtrls,
-  RzPanel;
+  RzPanel, System.ImageList, Vcl.ImgList;
 
 type
   TFrmMain = class(TForm)
@@ -29,6 +29,7 @@ type
     RzStatusPanecompltedartwork: TRzStatusPane;
     RzStatusPanehighpriority: TRzStatusPane;
     RzStatusPane2: TRzStatusPane;
+    ImageList1: TImageList;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);
@@ -71,8 +72,10 @@ procedure TFrmMain.FormShow(Sender: TObject);
 begin
 Caption:= 'Radhe Labels - Artwork Planner';
 dm.fdartworkcountprepress.Active:= true;
+dm.fdartworkcounthighpriority.Active:= true;
 RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
+RzStatusPanehighpriority.caption:='High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
 
 end;
 
@@ -106,7 +109,18 @@ end;
 
 
 procedure TFrmMain.RzStatusPanecompltedartworkDblClick(Sender: TObject);
+var
+  aComponent: TComponent;
 begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmartwork');
+  if not Assigned(aComponent) then
+    frmartwork := Tfrmartwork.Create(Application);
+  if frmartwork.WindowState = wsMinimized then
+    frmartwork.WindowState := wsNormal;
+  if frmartwork.visible = true then
+   frmartwork.FormShow(sender);
+
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
 frmartwork.fdorder.Connection:=dm.FDConnection1;
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
@@ -116,24 +130,54 @@ frmartwork.fdorder.Active := true;
 frmartwork.fdartwork.Active := true;
 frmArtwork.Caption := 'Completed Artworks';
 frmartwork.show;
+  screen.cursor := crDefault;
+
+
+
+
 end;
 
 procedure TFrmMain.RzStatusPanehighpriorityDblClick(Sender: TObject);
+var
+  aComponent: TComponent;
 begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmartwork');
+  if not Assigned(aComponent) then
+    frmartwork := Tfrmartwork.Create(Application);
+  if frmartwork.WindowState = wsMinimized then
+    frmartwork.WindowState := wsNormal;
+  if frmartwork.visible = true then
+
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
 frmartwork.fdorder.Connection:=dm.FDConnection1;
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
 frmartwork.fdorder.Connection:=dm.FDConnection1;
-//frmartwork.fdartwork.Open('SELECT SUM(priority = 'high') AS HIGHPRIRITY FROM artworks
+frmartwork.fdartwork.Open('SELECT * FROM artworks WHERE priority = ''high'' ORDER BY created_at DESC');
 frmartwork.fdorder.Active := true;
 frmartwork.fdartwork.Active := true;
-frmArtwork.Caption := 'High Priority Artworks';
+frmArtwork.Caption := 'Hight Artworks';
 frmartwork.show;
+ screen.cursor := crDefault;
+
+
+
 
 end;
 
 procedure TFrmMain.RzStatusPanependingartworksDblClick(Sender: TObject);
+var
+  aComponent: TComponent;
 begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmartwork');
+  if not Assigned(aComponent) then
+    frmartwork := Tfrmartwork.Create(Application);
+  if frmartwork.WindowState = wsMinimized then
+    frmartwork.WindowState := wsNormal;
+  if frmartwork.visible = true then
+   frmartwork.FormShow(sender);
+
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
 frmartwork.fdorder.Connection:=dm.FDConnection1;
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
@@ -143,6 +187,9 @@ frmartwork.fdorder.Active := true;
 frmartwork.fdartwork.Active := true;
 frmArtwork.Caption := 'Pending Artworks';
 frmartwork.show;
+  screen.cursor := crDefault;
+
+
 
 end;
 

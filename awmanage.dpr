@@ -11,7 +11,8 @@ uses
   HumanDateDiff in 'HumanDateDiff.pas',
   uFrmOrder in 'uFrmOrder.pas' {frmOrder},
   uFrmArtwork in 'uFrmArtwork.pas' {frmArtwork},
-  uartworkfilter in 'uartworkfilter.pas' {Form1};
+  uartworkfilter in 'uartworkfilter.pas' {Form1},
+  uFrmArtworkEdit in 'uFrmArtworkEdit.pas' {frmeditartwork};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.CreateForm(TfrmOrder, frmOrder);
   Application.CreateForm(TfrmArtwork, frmArtwork);
   Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tfrmeditartwork, frmeditartwork);
   Application.Run;
 end.

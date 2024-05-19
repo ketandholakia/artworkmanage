@@ -236,11 +236,32 @@ end;
 end;
 
 procedure TfrmOrder.popupmenueditartworkClick(Sender: TObject);
+var
+  aComponent: TComponent;
 begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmartwork');
+  if not Assigned(aComponent) then
+    frmartwork := Tfrmartwork.Create(Application);
+  if frmartwork.WindowState = wsMinimized then
+    frmartwork.WindowState := wsNormal;
+  if frmartwork.visible = true then
+   frmartwork.FormShow(sender);
+
+frmartwork.fdartwork.Connection:=dm.FDConnection1;
+frmartwork.fdorder.Connection:=dm.FDConnection1;
+frmartwork.fdartwork.Connection:=dm.FDConnection1;
+frmartwork.fdorder.Connection:=dm.FDConnection1;
 frmArtwork.fdartwork.Connection := dm.FDConnection1;
 frmArtwork.fdartwork.SQL.Text := 'select * from artworks where id = ' + IntToStr(fdArtworkDetailTableid.Value);
 frmArtwork.fdartwork.Open;
 frmArtwork.show;
+frmartwork.chkeditmode.Checked := true;
+screen.cursor := crDefault;
+
+
+
+
 
 
 

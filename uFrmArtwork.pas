@@ -11,19 +11,10 @@ uses
   Vcl.DBCtrls, Vcl.Mask, Vcl.ExtCtrls, PropSaveMain, PropSaveGrids, Vcl.Menus,
   rDBGridSorter_FireDac, System.Actions, Vcl.ActnList,
   Data.FmtBcd, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls,
-  Vcl.ActnMenus;
+  Vcl.ActnMenus, RzButton, RzPanel;
 
 type
   TfrmArtwork = class(TForm)
-    Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    dbeditdescription: TDBEdit;
-    DBLookupComboBoxOrderNo: TDBLookupComboBox;
-    DBComboBox1: TDBComboBox;
-    DBComboBox2: TDBComboBox;
     Panel2: TPanel;
     Button1: TButton;
     btnsave: TButton;
@@ -53,19 +44,9 @@ type
     fdartworkurl: TStringField;
     fdorderid: TLargeintField;
     fdorderorderno: TStringField;
-    Label7: TLabel;
-    DBEdit2: TDBEdit;
-    Label8: TLabel;
-    DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
     fdartworkBalanceQty: TIntegerField;
-    Label9: TLabel;
-    DBEdit5: TDBEdit;
-    Label10: TLabel;
-    DBCheckBox2: TDBCheckBox;
     fdartworkartworkOrderNo: TStringField;
     rDBGridsPropSave1: TrDBGridsPropSave;
-    fdartworkdetail: TFDQuery;
     PopupMenuartworkgrid: TPopupMenu;
     OpenOrder1: TMenuItem;
     rDBGridSorter_FireDac1: TrDBGridSorter_FireDac;
@@ -74,21 +55,19 @@ type
     Action2: TAction;
     ActionMainMenuBar1: TActionMainMenuBar;
     RefreshTable1: TMenuItem;
-    chkeditmode: TCheckBox;
     Panel3: TPanel;
     Label11: TLabel;
     EditSearchdescription: TEdit;
     btnsearchartwork: TButton;
-    Label3: TLabel;
-    DBText1: TDBText;
-    Label4: TLabel;
-    DBText2: TDBText;
     Editsearchremark: TEdit;
     Label12: TLabel;
     chksearchprepress: TCheckBox;
-    ComboBox1: TComboBox;
     btnsaveclose: TButton;
     PropSaveMain1: TPropSaveMain;
+    Button2: TButton;
+    EditArtwork1: TMenuItem;
+    RzToolbar1: TRzToolbar;
+    RzToolButton1: TRzToolButton;
     procedure Button1Click(Sender: TObject);
     procedure btnsaveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -108,6 +87,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnsavecloseClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure EditsearchremarkKeyPress(Sender: TObject; var Key: Char);
+    procedure EditArtwork1Click(Sender: TObject);
+    procedure rDBgridArtworkDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,7 +103,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDm, uFrmOrder, uFrmMain;
+uses uDm, uFrmOrder, uFrmMain, uFrmArtworkEdit;
 
 procedure TfrmArtwork.ActionManager1Execute(Action: TBasicAction;
   var Handled: Boolean);
@@ -185,27 +167,55 @@ begin
 end;
 
 procedure TfrmArtwork.btnsearchartworkClick(Sender: TObject);
-var
- strWHERE: string;
 begin
+fdartwork.SQL.Text := 'select * from artworks where description like :searchartwork_text '+ ' order by created_at desc' ;
+fdartwork.ParamByName('searchartwork_text').AsString := '%' + EditSearchdescription.text + '%';
+fdartwork.Open;
 
-strWHERE:= 'select * from artworks  ';
+//var
+// strWHERE: string;
+//begin
+//
+//strWHERE:= 'select * from artworks  ';
+//
+//
+//if (EditSearchdescription.Text <> '') and (Editsearchremark.Text = '') and (not chksearchprepress.Checked)
+// then begin
+// strWHERE:= strWHERE + ' where description like :search_text order by created_at desc';
+// fdartwork.ParamByName('search_text').AsString := '%' + EditSearchdescription.Text + '%';
+// fdartwork.Open;
+// end;
+//
+//if (EditSearchdescription.Text = '') and (Editsearchremark.Text <> '') and (not chksearchprepress.Checked)
+// then begin
+// strWHERE:= strWHERE + ' where remark like :search_text_remark order by created_at desc';
+// fdartwork.ParamByName('search_text_remark').AsString := '%' + Editsearchremark.Text + '%';
+// fdartwork.Open;
+// end;
 
 
-if (EditSearchdescription.Text <> '') and (Editsearchremark.Text = '') and (not chksearchprepress.Checked)
- then begin
- strWHERE:= strWHERE + ' where description like :search_text order by created_at desc';
- fdartwork.ParamByName('search_text').AsString := '%' + EditSearchdescription.Text + '%';
- fdartwork.Open;
- end;
+end;
 
-if (EditSearchdescription.Text = '') and (Editsearchremark.Text <> '') and (not chksearchprepress.Checked)
- then begin
- strWHERE:= strWHERE + ' where remark like :search_text_remark order by created_at desc';
- fdartwork.ParamByName('search_text_remark').AsString := '%' + Editsearchremark.Text + '%';
- fdartwork.Open;
- end;
+procedure TfrmArtwork.EditArtwork1Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmeditartwork');
+  if not Assigned(aComponent) then
+    frmeditartwork := Tfrmeditartwork.Create(Application);
+  if frmeditartwork.WindowState = wsMinimized then
+    frmeditartwork.WindowState := wsNormal;
+  if frmeditartwork.visible = true then
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.active := true;
+frmeditartwork.fdartwork.Open('select * from artworks where id = '+ IntToStr(fdartworkid.Value));
+frmeditartwork.fdartwork.Active := true;
 
+frmeditartwork.Show;
+  screen.cursor := crDefault;
 
 end;
 
@@ -213,10 +223,28 @@ procedure TfrmArtwork.EditSearchdescriptionKeyPress(Sender: TObject; var Key: Ch
 begin
   if Key = #13 then
   begin
-    // Execute your custom logic here
-    btnsearchartwork.Click;
+fdartwork.SQL.Text := 'select * from artworks where description like :searchartwork_text '+ ' order by created_at desc' ;
+fdartwork.ParamByName('searchartwork_text').AsString := '%' + EditSearchdescription.text + '%';
+fdartwork.Open;
+
+
 
   end;
+end;
+
+procedure TfrmArtwork.EditsearchremarkKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+
+    // Execute your custom logic here
+fdartwork.SQL.Text := 'select * from artworks where remark like :remarktext '+ ' order by created_at desc' ;
+fdartwork.ParamByName('remarktext').AsString := '%' + Editsearchremark.text + '%';
+fdartwork.Open;
+
+
+  end;
+
 end;
 
 procedure TfrmArtwork.fdartworkAfterInsert(DataSet: TDataSet);
@@ -225,6 +253,11 @@ dm.fdartworkcountprepress.Close;
 dm.fdartworkcountprepress.Open;
 frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+dm.fdartworkcounthighpriority.Close;
+dm.fdartworkcounthighpriority.Open;
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+
 
 end;
 
@@ -234,6 +267,10 @@ dm.fdartworkcountprepress.Close;
 dm.fdartworkcountprepress.Open;
 frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
+dm.fdartworkcounthighpriority.Close;
+dm.fdartworkcounthighpriority.Open;
+
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
 
 
 end;
@@ -280,6 +317,11 @@ frmorder.fdArtworkDetailTable.Connection := dm.FDConnection1;
 frmorder.fdorder.SQL.Text := 'select * from orders  where id = ' + IntToStr(fdartworkartworks_order_id.Value);
 frmorder.fdorder.Open;
 frmorder.show;
+end;
+
+procedure TfrmArtwork.rDBgridArtworkDblClick(Sender: TObject);
+begin
+EditArtwork1.Click;
 end;
 
 procedure TfrmArtwork.rDBgridArtworkDrawColumnCell(Sender: TObject;

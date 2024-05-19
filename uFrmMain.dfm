@@ -78,6 +78,7 @@ object FrmMain: TFrmMain
     object RzStatusPanehighpriority: TRzStatusPane
       Left = 220
       Top = 0
+      Width = 40
       Height = 19
       Align = alLeft
       Font.Charset = DEFAULT_CHARSET
@@ -87,9 +88,8 @@ object FrmMain: TFrmMain
       Font.Style = [fsBold]
       ParentFont = False
       OnDblClick = RzStatusPanehighpriorityDblClick
+      AutoSize = True
       Caption = ''
-      ExplicitLeft = 861
-      ExplicitHeight = 20
     end
     object RzStatusPane2: TRzStatusPane
       Left = 40
@@ -140,5 +140,9 @@ object FrmMain: TFrmMain
     object Action1: TAction
       Caption = 'Refresh Table'
     end
+  end
+  object ImageList1: TImageList
+    Left = 208
+    Top = 352
   end
 end

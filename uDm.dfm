@@ -11,6 +11,7 @@ object Dm: TDm
       'Password=root'
       'Port=3306'
       'DriverID=Connector')
+    Connected = True
     LoginPrompt = False
     AfterConnect = FDConnection1AfterConnect
     BeforeConnect = FDConnection1BeforeConnect
@@ -20,20 +21,21 @@ object Dm: TDm
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     DriverID = 'Connector'
     VendorLib = 
-      'C:\Users\ketan\Downloads\Firedac_MySQL_Delphi-main\Firedac_MySQL' +
-      '_Delphi-main\Win32\Debug\libmariadb.dll'
+      'C:\Users\ketan\OneDrive\Documents\GitHub\artworkmanage\libmysql.' +
+      'dll'
     Left = 40
     Top = 64
   end
   object fdartworkcountprepress: TFDQuery
+    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       
         'SELECT SUM(prepressstage = 1) AS YES, SUM(prepressstage = 0) AS ' +
         'NO'
       'FROM artworks')
-    Left = 40
-    Top = 416
+    Left = 64
+    Top = 336
     object fdartworkcountprepressYES: TFMTBCDField
       AutoGenerateValue = arDefault
       FieldName = 'YES'
@@ -251,8 +253,8 @@ object Dm: TDm
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT SUM(priority = '#39'high'#39') AS HIGHPRIRITY FROM artworks')
-    Left = 48
-    Top = 472
+    Left = 264
+    Top = 336
     object fdartworkcounthighpriorityHIGHPRIRITY: TFMTBCDField
       AutoGenerateValue = arDefault
       FieldName = 'HIGHPRIRITY'

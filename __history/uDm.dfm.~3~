@@ -1,0 +1,542 @@
+object Dm: TDm
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 537
+  Width = 665
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=rl'
+      'User_Name=root'
+      'Server=rl'
+      'Password=root'
+      'Port=3306'
+      'DriverID=Connector')
+    Connected = True
+    LoginPrompt = False
+    AfterConnect = FDConnection1AfterConnect
+    BeforeConnect = FDConnection1BeforeConnect
+    Left = 40
+    Top = 8
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    DriverID = 'Connector'
+    VendorLib = 
+      'C:\Users\ketan\OneDrive\Documents\GitHub\artworkmanage\libmysql.' +
+      'dll'
+    Left = 40
+    Top = 64
+  end
+  object fdartworkcountprepress: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT SUM(prepressstage = 1) AS YES, SUM(prepressstage = 0) AS ' +
+        'NO'
+      'FROM artworks')
+    Left = 64
+    Top = 336
+    object fdartworkcountprepressYES: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'YES'
+      Origin = 'YES'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 23
+      Size = 0
+    end
+    object fdartworkcountprepressNO: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'NO'
+      Origin = 'NO'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 23
+      Size = 0
+    end
+  end
+  object fdartworkstatuscount: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT awstatus, COUNT(awstatus) AS Frequency'
+      'FROM artworks'
+      'GROUP BY awstatus;')
+    Left = 304
+    Top = 440
+    object fdartworkstatuscountawstatus: TStringField
+      FieldName = 'awstatus'
+      Origin = 'awstatus'
+      Required = True
+      FixedChar = True
+      Size = 15
+    end
+    object fdartworkstatuscountFrequency: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'Frequency'
+      Origin = 'Frequency'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+  end
+  object fdartworkfilter: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from artworks')
+    Left = 40
+    Top = 256
+    object fdartworkfilterid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdartworkfilterdescription: TStringField
+      FieldName = 'description'
+      Origin = 'description'
+      Required = True
+      Size = 255
+    end
+    object fdartworkfilterartworks_order_id: TLargeintField
+      FieldName = 'artworks_order_id'
+      Origin = 'artworks_order_id'
+      Required = True
+    end
+    object fdartworkfilterrequiredqty: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'requiredqty'
+      Origin = 'requiredqty'
+    end
+    object fdartworkfilterjobrun: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'jobrun'
+      Origin = 'jobrun'
+    end
+    object fdartworkfilterlabelrepeat: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'labelrepeat'
+      Origin = 'labelrepeat'
+    end
+    object fdartworkfilterprintedqty: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'printedqty'
+      Origin = 'printedqty'
+    end
+    object fdartworkfilterartworks_media_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'artworks_media_id'
+      Origin = 'artworks_media_id'
+    end
+    object fdartworkfiltercreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object fdartworkfilterupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
+    object fdartworkfilterremark: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'remark'
+      Origin = 'remark'
+      Size = 255
+    end
+    object fdartworkfilterawstatus: TStringField
+      FieldName = 'awstatus'
+      Origin = 'awstatus'
+      Required = True
+      FixedChar = True
+      Size = 15
+    end
+    object fdartworkfilterprepressstage: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'prepressstage'
+      Origin = 'prepressstage'
+    end
+    object fdartworkfilterartworks_plate_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'artworks_plate_id'
+      Origin = 'artworks_plate_id'
+    end
+    object fdartworkfiltertype: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'type'
+      Origin = 'type'
+      FixedChar = True
+      Size = 9
+    end
+    object fdartworkfilterpriority: TStringField
+      FieldName = 'priority'
+      Origin = 'priority'
+      Required = True
+      FixedChar = True
+      Size = 6
+    end
+    object fdartworkfilterurl: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'url'
+      Origin = 'url'
+      Size = 2048
+    end
+    object fdartworkfilterordernolookup: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ordernolookup'
+      LookupDataSet = fdorder
+      LookupKeyFields = 'id'
+      LookupResultField = 'orderno'
+      KeyFields = 'artworks_order_id'
+      Lookup = True
+    end
+  end
+  object fdorder: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from orders order by created_at desc')
+    Left = 32
+    Top = 200
+    object fdorderid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdorderorderno: TStringField
+      FieldName = 'orderno'
+      Origin = 'orderno'
+      Required = True
+      Size = 255
+    end
+    object fdorderorders_customer_id: TLargeintField
+      FieldName = 'orders_customer_id'
+      Origin = 'orders_customer_id'
+      Required = True
+    end
+    object fdorderstatus: TStringField
+      FieldName = 'status'
+      Origin = 'status'
+      Required = True
+      FixedChar = True
+      Size = 15
+    end
+    object fdordercreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object fdorderupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
+    object fdorderpriority: TStringField
+      FieldName = 'priority'
+      Origin = 'priority'
+      Required = True
+      FixedChar = True
+      Size = 6
+    end
+    object fdorderurl: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'url'
+      Origin = 'url'
+      Size = 2048
+    end
+    object fdorderremark: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'remark'
+      Origin = 'remark'
+      Size = 255
+    end
+  end
+  object fdartworkcounthighpriority: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT SUM(priority = '#39'high'#39') AS HIGHPRIRITY FROM artworks')
+    Left = 48
+    Top = 472
+    object fdartworkcounthighpriorityHIGHPRIRITY: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'HIGHPRIRITY'
+      Origin = 'HIGHPRIRITY'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 23
+      Size = 0
+    end
+  end
+  object fdusers: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from users')
+    Left = 504
+    Top = 24
+    object fdusersid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdusersname: TStringField
+      FieldName = 'name'
+      Origin = 'name'
+      Required = True
+      Size = 255
+    end
+    object fdusersemail: TStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Required = True
+      Size = 255
+    end
+    object fdusersemail_verified_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'email_verified_at'
+      Origin = 'email_verified_at'
+    end
+    object fduserspassword: TStringField
+      FieldName = 'password'
+      Origin = 'password'
+      Required = True
+      Size = 255
+    end
+    object fdusersremember_token: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'remember_token'
+      Origin = 'remember_token'
+      Size = 100
+    end
+    object fduserscreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object fdusersupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
+    object fdusersuserid: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'userid'
+      Origin = 'userid'
+    end
+    object fdusersLoginName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'LoginName'
+      Origin = 'LoginName'
+      Size = 50
+    end
+    object fdusersFullName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'FullName'
+      Origin = 'FullName'
+      Size = 50
+    end
+    object fdusersLastAccess: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'LastAccess'
+      Origin = 'LastAccess'
+    end
+    object fdusersEnabled: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'Enabled'
+      Origin = 'Enabled'
+    end
+    object fdusersCreatedDate: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'CreatedDate'
+      Origin = 'CreatedDate'
+    end
+    object fdusersLastAccTime: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'LastAccTime'
+      Origin = 'LastAccTime'
+    end
+    object fdusersCreatedTime: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'CreatedTime'
+      Origin = 'CreatedTime'
+    end
+    object fdusersAccessCount: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'AccessCount'
+      Origin = 'AccessCount'
+    end
+  end
+  object dsusers: TDataSource
+    DataSet = fdusers
+    Left = 584
+    Top = 24
+  end
+  object FDuseraccess: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from useraccess')
+    Left = 504
+    Top = 96
+    object FDuseraccessid: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'id'
+      Origin = 'id'
+    end
+    object FDuseraccessUserName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'UserName'
+      Origin = 'UserName'
+      Size = 50
+    end
+    object FDuseraccessPermission: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Permission'
+      Origin = 'Permission'
+      Size = 50
+    end
+  end
+  object dsuseraccess: TDataSource
+    DataSet = FDuseraccess
+    Left = 584
+    Top = 96
+  end
+  object FDusergroup: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from usergroup')
+    Left = 504
+    Top = 232
+    object FDusergroupGroupID: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'GroupID'
+      Origin = 'GroupID'
+    end
+    object FDusergroupGroupName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'GroupName'
+      Origin = 'GroupName'
+      Size = 50
+    end
+    object FDusergroupDescription: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Description'
+      Origin = 'Description'
+      Size = 50
+    end
+  end
+  object dsusergroup: TDataSource
+    DataSet = FDusergroup
+    Left = 584
+    Top = 232
+  end
+  object FDuserpermissions: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from userpermissions')
+    Left = 505
+    Top = 166
+    object FDuserpermissionspermission: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'permission'
+      Origin = 'permission'
+      Size = 50
+    end
+    object FDuserpermissionsitems: TMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'items'
+      Origin = 'items'
+      BlobType = ftMemo
+    end
+    object FDuserpermissionsaction: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'action'
+      Origin = 'action'
+    end
+    object FDuserpermissionsFormName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'FormName'
+      Origin = 'FormName'
+      Size = 150
+    end
+  end
+  object dsuserpermissions: TDataSource
+    DataSet = FDuserpermissions
+    Left = 585
+    Top = 166
+  end
+  object FDgroupaccess: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from groupaccess')
+    Left = 507
+    Top = 309
+    object FDgroupaccessGroupName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'GroupName'
+      Origin = 'GroupName'
+      Size = 50
+    end
+    object FDgroupaccessPermission: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Permission'
+      Origin = 'Permission'
+      Size = 50
+    end
+  end
+  object dsgroupaccess: TDataSource
+    DataSet = FDgroupaccess
+    Left = 587
+    Top = 309
+  end
+  object FDgroupmember: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from groupmember')
+    Left = 507
+    Top = 397
+    object FDgroupmemberUserName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'UserName'
+      Origin = 'UserName'
+      Size = 50
+    end
+    object FDgroupmemberGroupName: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'GroupName'
+      Origin = 'GroupName'
+      Size = 50
+    end
+  end
+  object dsgroupmember: TDataSource
+    DataSet = FDgroupmember
+    Left = 587
+    Top = 397
+  end
+  object uilSecurityManager1: TuilSecurityManager
+    UserBindary.DataSource = dsusers
+    UserBindary.UserNameField = 'name'
+    UserBindary.FullNameField = 'FullName'
+    UserBindary.PasswordField = 'Password'
+    UserBindary.AccessCountField = 'AccessCount'
+    UserBindary.CreatedDateField = 'CreatedDate'
+    UserBindary.CreatedTimeField = 'CreatedTime'
+    UserBindary.EnabledField = 'Enabled'
+    UserBindary.LastAccessField = 'LastAccess'
+    UserBindary.LastAccessTimeField = 'LastAccTime'
+    UserBindary.UserPermissions.DataSource = dsuseraccess
+    UserBindary.UserPermissions.PermissionField = 'permission'
+    UserBindary.UserPermissions.UserNameField = 'UserName'
+    GroupBindary.DataSource = dsusergroup
+    GroupBindary.GroupNameField = 'GroupName'
+    GroupBindary.GroupDescriptionField = 'Description'
+    GroupBindary.GroupPermissions.DataSource = dsgroupaccess
+    GroupBindary.GroupPermissions.PermissionField = 'Permission'
+    GroupBindary.GroupPermissions.GroupNameField = 'UserName'
+    GroupBindary.GroupMembershipBindary.DataSource = dsgroupmember
+    GroupBindary.GroupMembershipBindary.GroupNameField = 'GroupName'
+    GroupBindary.GroupMembershipBindary.UserNameField = 'UserName'
+    PermissionBindary.DataSource = dsuserpermissions
+    PermissionBindary.PermissionField = 'Permission'
+    PermissionBindary.Storage = psForm
+    Version = '4.2.2.0'
+    Left = 320
+    Top = 256
+  end
+end

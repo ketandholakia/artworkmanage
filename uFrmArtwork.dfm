@@ -3,7 +3,7 @@ object frmArtwork: TfrmArtwork
   Top = 0
   Caption = 'Artworks'
   ClientHeight = 629
-  ClientWidth = 758
+  ClientWidth = 1075
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,230 +17,15 @@ object frmArtwork: TfrmArtwork
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 758
-    Height = 159
-    Align = alTop
-    TabOrder = 0
-    DesignSize = (
-      758
-      159)
-    object Label1: TLabel
-      Left = 16
-      Top = 36
-      Width = 68
-      Height = 13
-      Caption = 'Artwork Desc.'
-    end
-    object Label2: TLabel
-      Left = 16
-      Top = 63
-      Width = 64
-      Height = 13
-      Caption = 'Required Qty'
-    end
-    object Label5: TLabel
-      Left = 16
-      Top = 99
-      Width = 31
-      Height = 13
-      Caption = 'Status'
-    end
-    object Label6: TLabel
-      Left = 241
-      Top = 97
-      Width = 34
-      Height = 13
-      Caption = 'Priority'
-    end
-    object Label7: TLabel
-      Left = 14
-      Top = 6
-      Width = 48
-      Height = 13
-      Caption = 'Order No.'
-    end
-    object Label8: TLabel
-      Left = 206
-      Top = 66
-      Width = 55
-      Height = 13
-      Caption = 'Printed Qty'
-    end
-    object Label9: TLabel
-      Left = 395
-      Top = 66
-      Width = 55
-      Height = 13
-      Caption = 'Printed Qty'
-    end
-    object Label10: TLabel
-      Left = 16
-      Top = 129
-      Width = 36
-      Height = 13
-      Caption = 'Remark'
-    end
-    object dbeditdescription: TDBEdit
-      Left = 86
-      Top = 33
-      Width = 657
-      Height = 21
-      Anchors = [akLeft, akTop, akRight]
-      DataField = 'description'
-      DataSource = DSartwork
-      TabOrder = 1
-    end
-    object DBLookupComboBoxOrderNo: TDBLookupComboBox
-      Left = 86
-      Top = 6
-      Width = 656
-      Height = 21
-      Anchors = [akLeft, akTop, akRight]
-      DataField = 'artworks_order_id'
-      DataSource = DSartwork
-      KeyField = 'id'
-      ListField = 'orderno'
-      ListSource = DSorder
-      TabOrder = 0
-    end
-    object DBComboBox1: TDBComboBox
-      Left = 88
-      Top = 93
-      Width = 137
-      Height = 21
-      DataField = 'awstatus'
-      DataSource = DSartwork
-      Items.Strings = (
-        'pending'
-        'approved'
-        'printed'
-        'platesent'
-        'sentforapproval'
-        'noartworkfile')
-      TabOrder = 3
-    end
-    object DBComboBox2: TDBComboBox
-      Left = 295
-      Top = 93
-      Width = 143
-      Height = 21
-      DataField = 'priority'
-      DataSource = DSartwork
-      Items.Strings = (
-        'medium'
-        'low'
-        'high')
-      TabOrder = 4
-    end
-    object DBEdit2: TDBEdit
-      Left = 87
-      Top = 61
-      Width = 106
-      Height = 21
-      DataField = 'requiredqty'
-      DataSource = DSartwork
-      TabOrder = 2
-    end
-    object DBEdit3: TDBEdit
-      Left = 276
-      Top = 62
-      Width = 106
-      Height = 21
-      DataField = 'printedqty'
-      DataSource = DSartwork
-      TabOrder = 5
-    end
-    object DBEdit4: TDBEdit
-      Left = 534
-      Top = 63
-      Width = 209
-      Height = 21
-      Anchors = [akTop, akRight, akBottom]
-      DataField = 'BalanceQty'
-      DataSource = DSartwork
-      TabOrder = 6
-    end
-    object DBEdit5: TDBEdit
-      Left = 87
-      Top = 126
-      Width = 656
-      Height = 21
-      Anchors = [akLeft, akTop, akRight]
-      DataField = 'remark'
-      DataSource = DSartwork
-      TabOrder = 7
-    end
-    object DBCheckBox2: TDBCheckBox
-      Left = 448
-      Top = 95
-      Width = 97
-      Height = 17
-      Caption = '&Prepress Done'
-      DataField = 'prepressstage'
-      DataSource = DSartwork
-      TabOrder = 8
-    end
-    object chkeditmode: TCheckBox
-      Left = 584
-      Top = 95
-      Width = 89
-      Height = 17
-      Caption = 'Edit Mode'
-      TabOrder = 9
-    end
-  end
   object Panel2: TPanel
     Left = 0
-    Top = 159
-    Width = 758
+    Top = 29
+    Width = 1075
     Height = 41
     Align = alTop
-    TabOrder = 1
-    object Label3: TLabel
-      Left = 17
-      Top = 12
-      Width = 57
-      Height = 13
-      Caption = 'Created on '
-    end
-    object DBText1: TDBText
-      Left = 83
-      Top = 12
-      Width = 170
-      Height = 17
-      DataField = 'created_at'
-      DataSource = DSartwork
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
-    object Label4: TLabel
-      Left = 209
-      Top = 12
-      Width = 57
-      Height = 13
-      Caption = 'Updated at '
-    end
-    object DBText2: TDBText
-      Left = 276
-      Top = 13
-      Width = 133
-      Height = 17
-      DataField = 'updated_at'
-      DataSource = DSartwork
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
+    TabOrder = 0
+    ExplicitTop = 159
+    ExplicitWidth = 852
     object Button1: TButton
       Left = 417
       Top = 7
@@ -273,27 +58,27 @@ object frmArtwork: TfrmArtwork
       Top = 6
       Width = 75
       Height = 25
-      Caption = 'Save && Close'
-      Default = True
+      Caption = '&Save && Close'
       TabOrder = 3
       OnClick = btnsavecloseClick
     end
   end
   object rDBgridArtwork: TrDBGrid
     Left = 0
-    Top = 270
-    Width = 758
-    Height = 359
+    Top = 140
+    Width = 1075
+    Height = 489
     Align = alClient
     DataSource = DSartwork
     PopupMenu = PopupMenuartworkgrid
-    TabOrder = 2
+    TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDrawColumnCell = rDBgridArtworkDrawColumnCell
+    OnDblClick = rDBgridArtworkDblClick
     Sorter = rDBGridSorter_FireDac1
     Columns = <
       item
@@ -371,9 +156,10 @@ object frmArtwork: TfrmArtwork
   end
   object ActionMainMenuBar1: TActionMainMenuBar
     Left = 0
-    Top = 200
-    Width = 758
+    Top = 70
+    Width = 1075
     Height = 29
+    UseSystemFont = False
     Caption = 'ActionMainMenuBar1'
     Color = clMenuBar
     ColorMap.DisabledFontColor = 10461087
@@ -381,19 +167,23 @@ object frmArtwork: TfrmArtwork
     ColorMap.BtnSelectedFont = clBlack
     ColorMap.UnusedColor = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clBlack
     Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
+    ExplicitTop = 200
+    ExplicitWidth = 852
   end
   object Panel3: TPanel
     Left = 0
-    Top = 229
-    Width = 758
+    Top = 99
+    Width = 1075
     Height = 41
     Align = alTop
-    TabOrder = 4
+    TabOrder = 3
+    ExplicitTop = 229
+    ExplicitWidth = 852
     object Label11: TLabel
       Left = 14
       Top = 15
@@ -402,8 +192,8 @@ object frmArtwork: TfrmArtwork
       Caption = 'Description'
     end
     object Label12: TLabel
-      Left = 195
-      Top = 16
+      Left = 319
+      Top = 15
       Width = 36
       Height = 13
       Caption = 'Remark'
@@ -417,43 +207,61 @@ object frmArtwork: TfrmArtwork
       OnKeyPress = EditSearchdescriptionKeyPress
     end
     object btnsearchartwork: TButton
-      Left = 660
-      Top = 7
-      Width = 85
+      Left = 191
+      Top = 10
+      Width = 122
       Height = 25
-      Caption = 'Search Artwork'
+      Caption = 'Search description'
       TabOrder = 1
       OnClick = btnsearchartworkClick
     end
     object Editsearchremark: TEdit
-      Left = 240
-      Top = 11
+      Left = 363
+      Top = 9
       Width = 116
       Height = 21
       TabOrder = 2
-      OnKeyPress = EditSearchdescriptionKeyPress
+      OnKeyPress = EditsearchremarkKeyPress
     end
     object chksearchprepress: TCheckBox
-      Left = 520
-      Top = 11
+      Left = 767
+      Top = 12
       Width = 67
       Height = 17
       Caption = 'Prepress'
       TabOrder = 3
     end
-    object ComboBox1: TComboBox
-      Left = 411
-      Top = 11
-      Width = 97
-      Height = 21
+    object Button2: TButton
+      Left = 506
+      Top = 8
+      Width = 157
+      Height = 25
+      Caption = 'Search by Remark'
       TabOrder = 4
-      Text = 'ComboBox1'
+    end
+  end
+  object RzToolbar1: TRzToolbar
+    Left = 0
+    Top = 0
+    Width = 1075
+    Height = 29
+    BorderInner = fsNone
+    BorderOuter = fsGroove
+    BorderSides = [sdTop]
+    BorderWidth = 0
+    TabOrder = 4
+    ExplicitTop = -9
+    ToolbarControls = (
+      RzToolButton1)
+    object RzToolButton1: TRzToolButton
+      Left = 4
+      Top = 2
     end
   end
   object DSartwork: TDataSource
     DataSet = fdartwork
-    Left = 192
-    Top = 128
+    Left = 56
+    Top = 512
   end
   object fdartwork: TFDQuery
     AfterInsert = fdartworkAfterInsert
@@ -465,8 +273,8 @@ object frmArtwork: TfrmArtwork
       
         'select * from artworks where description like :search_text order' +
         ' by created_at desc')
-    Left = 48
-    Top = 536
+    Left = 128
+    Top = 496
     ParamData = <
       item
         Name = 'search_text'
@@ -599,8 +407,8 @@ object frmArtwork: TfrmArtwork
     SQL.Strings = (
       'select * from orders order by created_at desc'
       '')
-    Left = 640
-    Top = 296
+    Left = 136
+    Top = 408
     object fdorderid: TLargeintField
       AutoGenerateValue = arAutoInc
       FieldName = 'id'
@@ -616,8 +424,8 @@ object frmArtwork: TfrmArtwork
   end
   object DSorder: TDataSource
     DataSet = fdorder
-    Left = 232
-    Top = 400
+    Left = 56
+    Top = 416
   end
   object rDBGridsPropSave1: TrDBGridsPropSave
     PropSaveMain = PropSaveMain1
@@ -630,10 +438,6 @@ object frmArtwork: TfrmArtwork
     Left = 392
     Top = 504
   end
-  object fdartworkdetail: TFDQuery
-    Left = 496
-    Top = 320
-  end
   object PopupMenuartworkgrid: TPopupMenu
     Left = 80
     Top = 312
@@ -644,6 +448,10 @@ object frmArtwork: TfrmArtwork
     object RefreshTable1: TMenuItem
       Action = actRefreshTable
       OnClick = RefreshTable1Click
+    end
+    object EditArtwork1: TMenuItem
+      Caption = 'Edit Artwork'
+      OnClick = EditArtwork1Click
     end
   end
   object rDBGridSorter_FireDac1: TrDBGridSorter_FireDac
