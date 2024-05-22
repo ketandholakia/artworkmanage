@@ -10,7 +10,10 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   Data.FmtBcd, FireDAC.Comp.Client, System.Actions, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, RzStatus, Vcl.ExtCtrls,
-  RzPanel, System.ImageList, Vcl.ImgList;
+  RzPanel, System.ImageList, Vcl.ImgList, RzButton;
+
+function IsFormOpen(FormClass: TFormClass): Boolean;
+
 
 type
   TFrmMain = class(TForm)
@@ -29,7 +32,6 @@ type
     RzStatusPanecompltedartwork: TRzStatusPane;
     RzStatusPanehighpriority: TRzStatusPane;
     RzStatusPane2: TRzStatusPane;
-    ImageList1: TImageList;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);
@@ -51,6 +53,23 @@ implementation
 {$R *.dfm}
 
 uses uDm, uFrmCustomer, uFrmOrder, uFrmArtwork;
+
+
+
+function IsFormOpen(FormClass: TFormClass): Boolean;
+var
+  i: Integer;
+begin
+  Result := False;
+  for i := 0 to Screen.FormCount - 1 do
+  begin
+    if Screen.Forms[i] is FormClass then
+    begin
+      Result := True;
+      Break;
+    end;
+  end;
+end;
 
 procedure TFrmMain.DataSupplier1Click(Sender: TObject);
 var

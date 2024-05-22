@@ -13,7 +13,6 @@ object frmOrder: TfrmOrder
   OldCreateOrder = False
   Position = poMainFormCenter
   OnClose = FormClose
-  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -558,7 +557,7 @@ object frmOrder: TfrmOrder
     SQL.Strings = (
       
         'select * from rl.artworks where artworks_order_id = :id order by' +
-        ' requiredqty')
+        ' description asc')
     Left = 172
     Top = 467
     ParamData = <
@@ -996,12 +995,12 @@ object frmOrder: TfrmOrder
     Top = 512
   end
   object PopupMenu1: TPopupMenu
-    Left = 440
-    Top = 376
-    object PopupMenu11: TMenuItem
+    Left = 104
+    Top = 568
+    object PopupMenuAddartwork: TMenuItem
       Caption = 'Add Artwork to Order'
       ShortCut = 16449
-      OnClick = PopupMenu11Click
+      OnClick = PopupMenuAddartworkClick
     end
     object popupmenueditartwork: TMenuItem
       Caption = 'Edit Artwork'
@@ -1015,6 +1014,7 @@ object frmOrder: TfrmOrder
     end
     object Refresh1: TMenuItem
       Caption = 'Refresh'
+      ShortCut = 116
       OnClick = Refresh1Click
     end
   end

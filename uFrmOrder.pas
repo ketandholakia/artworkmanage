@@ -82,7 +82,7 @@ type
     RzSizePanel2: TRzSizePanel;
     rdbgridOrder: TrDBGrid;
     PopupMenu1: TPopupMenu;
-    PopupMenu11: TMenuItem;
+    PopupMenuAddartwork: TMenuItem;
     popupmenueditartwork: TMenuItem;
     Refresh1: TMenuItem;
     Panel3: TPanel;
@@ -110,14 +110,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure rDBgridArtworkDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure PopupMenu11Click(Sender: TObject);
+    procedure PopupMenuAddartworkClick(Sender: TObject);
     procedure popupmenueditartworkClick(Sender: TObject);
     procedure Refresh1Click(Sender: TObject);
     procedure btnsearchartworkdetaildescClick(Sender: TObject);
     procedure chkprepressdoneClick(Sender: TObject);
     procedure EditSearchorderdescKeyPress(Sender: TObject; var Key: Char);
     procedure edtartworksearchKeyPress(Sender: TObject; var Key: Char);
-    procedure FormCreate(Sender: TObject);
     procedure fdOrderBeforeEdit(DataSet: TDataSet);
     procedure fdArtworkDetailTableBeforeEdit(DataSet: TDataSet);
     procedure fdArtworkDetailTableCalcFields(DataSet: TDataSet);
@@ -140,7 +139,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDm, uFrmArtwork, uFrmMain;
+uses uDm, uFrmArtwork, uFrmMain, uFrmArtworkEdit;
 
 procedure TfrmOrder.btnsearchartworkdetaildescClick(Sender: TObject);
 begin
@@ -240,32 +239,23 @@ var
   aComponent: TComponent;
 begin
   screen.cursor := crHourglass;
-  aComponent := Application.FindComponent('frmartwork');
+  aComponent := Application.FindComponent('frmeditartwork');
   if not Assigned(aComponent) then
-    frmartwork := Tfrmartwork.Create(Application);
-  if frmartwork.WindowState = wsMinimized then
-    frmartwork.WindowState := wsNormal;
-  if frmartwork.visible = true then
-   frmartwork.FormShow(sender);
+    frmeditartwork := Tfrmeditartwork.Create(Application);
+  if frmeditartwork.WindowState = wsMinimized then
+    frmeditartwork.WindowState := wsNormal;
+  if frmeditartwork.visible = true then
+   frmeditartwork.FormShow(sender);
 
-frmartwork.fdartwork.Connection:=dm.FDConnection1;
-frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmartwork.fdartwork.Connection:=dm.FDConnection1;
-frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmArtwork.fdartwork.Connection := dm.FDConnection1;
-frmArtwork.fdartwork.SQL.Text := 'select * from artworks where id = ' + IntToStr(fdArtworkDetailTableid.Value);
-frmArtwork.fdartwork.Open;
-frmArtwork.show;
-frmartwork.chkeditmode.Checked := true;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection := dm.FDConnection1;
+frmeditartwork.fdartwork.SQL.Text := 'select * from artworks where id = ' + IntToStr(fdArtworkDetailTableid.Value);
+frmeditartwork.fdartwork.Open;
+frmeditartwork.show;
 screen.cursor := crDefault;
-
-
-
-
-
-
-
-
 end;
 
 procedure TfrmOrder.EditSearchorderdescKeyPress(Sender: TObject; var Key: Char);
@@ -332,10 +322,6 @@ begin
   Action := caFree;
 end;
 
-procedure TfrmOrder.FormCreate(Sender: TObject);
-begin
- chkeditmode.Checked := false;
-end;
 
 procedure TfrmOrder.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -356,38 +342,39 @@ fdArtworkDetailTable.Active := true;
 
 end;
 
-procedure TfrmOrder.PopupMenu11Click(Sender: TObject);
+procedure TfrmOrder.PopupMenuAddartworkClick(Sender: TObject);
 var
   aComponent: TComponent;
 begin
   screen.cursor := crHourglass;
-  aComponent := Application.FindComponent('frmartwork');
+  aComponent := Application.FindComponent('frmeditartwork');
   if not Assigned(aComponent) then
-frmartwork := Tfrmartwork.Create(Application);
+frmeditartwork := Tfrmeditartwork.Create(Application);
 
-  if frmartwork.WindowState = wsMinimized then
-    frmartwork.WindowState := wsNormal;
-  if frmartwork.visible = true then
-    frmartwork.FormShow(sender);
+  if frmeditartwork.WindowState = wsMinimized then
+    frmeditartwork.WindowState := wsNormal;
+  if frmeditartwork.visible = true then
+    frmeditartwork.FormShow(sender);
 
-frmartwork.fdartwork.Connection:=dm.FDConnection1;
-frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmartwork.fdartwork.Connection:=dm.FDConnection1;
-frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmartwork.fdartwork.Active := true;
-frmartwork.fdartwork.Insert;
-frmartwork.fdartworkartworks_order_id.Value := fdOrderid.Value;
-frmartwork.fdartworkrequiredqty.Value := 0;
-frmartwork.fdartworkawstatus.Value := 'pending';
-frmartwork.fdartworkpriority.Value := 'medium';
-frmartwork.fdartworkprepressstage.Value := false;
-frmartwork.show;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Active := true;
+frmeditartwork.fdartwork.Insert;
+frmeditartwork.fdartworkartworks_order_id.Value := fdOrderid.Value;
+frmeditartwork.fdartworkrequiredqty.Value := 0;
+frmeditartwork.fdartworkawstatus.Value := 'pending';
+frmeditartwork.fdartworkpriority.Value := 'medium';
+frmeditartwork.fdartworkprepressstage.Value := false;
+frmeditartwork.show;
 
 
 
-frmartwork.dbeditdescription.setfocus;
+frmeditartwork.dbdescription.setfocus;
   screen.cursor := crDefault;
 end;
+
 
 
 

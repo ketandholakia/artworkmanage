@@ -68,6 +68,9 @@ type
     EditArtwork1: TMenuItem;
     RzToolbar1: TRzToolbar;
     RzToolButton1: TRzToolButton;
+    btnsearchbyqty: TButton;
+    edtfrom: TEdit;
+    edtto: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure btnsaveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -82,14 +85,13 @@ type
     procedure fdartworkAfterInsert(DataSet: TDataSet);
     procedure EditSearchdescriptionKeyPress(Sender: TObject; var Key: Char);
     procedure fdartworkAfterPost(DataSet: TDataSet);
-    procedure fdartworkBeforeEdit(DataSet: TDataSet);
-    procedure fdorderBeforeEdit(DataSet: TDataSet);
-    procedure FormCreate(Sender: TObject);
     procedure btnsavecloseClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure EditsearchremarkKeyPress(Sender: TObject; var Key: Char);
     procedure EditArtwork1Click(Sender: TObject);
     procedure rDBgridArtworkDblClick(Sender: TObject);
+    procedure fdartworkBeforeInsert(DataSet: TDataSet);
+    procedure btnsearchbyqtyClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -195,6 +197,20 @@ fdartwork.Open;
 
 
 end;
+//search by qty range
+procedure TfrmArtwork.btnsearchbyqtyClick(Sender: TObject);
+begin
+if StrToInt(edtfrom.Text) < StrToInt(edtto.Text) then
+begin
+fdartwork.SQL.Text := 'select * from artworks where requiredqty between :frmqty AND :toqty '+ ' order by created_at desc' ;
+fdartwork.ParamByName('frmqty').AsString := edtfrom.Text;
+fdartwork.ParamByName('toqty').AsString := edtto.Text;
+fdartwork.Open;
+
+
+
+end;
+end;
 
 procedure TfrmArtwork.EditArtwork1Click(Sender: TObject);
 var
@@ -251,11 +267,12 @@ procedure TfrmArtwork.fdartworkAfterInsert(DataSet: TDataSet);
 begin
 dm.fdartworkcountprepress.Close;
 dm.fdartworkcountprepress.Open;
+dm.fdartworkcounthighpriority.Close;
+dm.fdartworkcounthighpriority.Open;
+
 frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
 frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
-dm.fdartworkcounthighpriority.Close;
-dm.fdartworkcounthighpriority.Open;
 frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
 
 
@@ -263,23 +280,19 @@ end;
 
 procedure TfrmArtwork.fdartworkAfterPost(DataSet: TDataSet);
 begin
-dm.fdartworkcountprepress.Close;
-dm.fdartworkcountprepress.Open;
+dm.fdartworkcountprepress.RefreshRecord;
+dm.fdartworkcounthighpriority.refreshrecord;
 frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
-dm.fdartworkcounthighpriority.Close;
-dm.fdartworkcounthighpriority.Open;
-
 frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
-
+fdartworkupdated_at.Value := DateTimeToSQLTimeStamp(Now);
 
 end;
 
-procedure TfrmArtwork.fdartworkBeforeEdit(DataSet: TDataSet);
-begin
- if chkeditmode.Checked = false then
-    raise(EAbort.create(''));
 
+procedure TfrmArtwork.fdartworkBeforeInsert(DataSet: TDataSet);
+begin
+fdartworkcreated_at.Value := DateTimeToSQLTimeStamp(Now);
 end;
 
 procedure TfrmArtwork.fdartworkCalcFields(DataSet: TDataSet);
@@ -287,22 +300,12 @@ begin
 fdartworkBalanceQty.Value := fdartworkprintedqty.Value - fdartworkrequiredqty.Value;
 end;
 
-procedure TfrmArtwork.fdorderBeforeEdit(DataSet: TDataSet);
-begin
- if chkeditmode.Checked = false then
-    raise(EAbort.create(''));
-
-end;
 
 procedure TfrmArtwork.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
 end;
 
-procedure TfrmArtwork.FormCreate(Sender: TObject);
-begin
-  chkeditmode.Checked := false;
-end;
 
 procedure TfrmArtwork.FormShow(Sender: TObject);
 begin
@@ -311,7 +314,16 @@ rDBgridArtwork.SetFocus;
 end;
 
 procedure TfrmArtwork.OpenOrder1Click(Sender: TObject);
+var
+  aComponent: TComponent;
 begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmorder');
+  if not Assigned(aComponent) then
+    frmorder := Tfrmorder.Create(Application);
+  if frmorder.WindowState = wsMinimized then
+    frmorder.WindowState := wsNormal;
+  if frmorder.visible = true then
 frmorder.fdOrder.Connection := dm.FDConnection1;
 frmorder.fdArtworkDetailTable.Connection := dm.FDConnection1;
 frmorder.fdorder.SQL.Text := 'select * from orders  where id = ' + IntToStr(fdartworkartworks_order_id.Value);

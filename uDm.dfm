@@ -61,8 +61,8 @@ object Dm: TDm
       'SELECT awstatus, COUNT(awstatus) AS Frequency'
       'FROM artworks'
       'GROUP BY awstatus;')
-    Left = 304
-    Top = 440
+    Left = 264
+    Top = 424
     object fdartworkstatuscountawstatus: TStringField
       FieldName = 'awstatus'
       Origin = 'awstatus'

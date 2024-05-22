@@ -141,8 +141,4 @@ object FrmMain: TFrmMain
       Caption = 'Refresh Table'
     end
   end
-  object ImageList1: TImageList
-    Left = 208
-    Top = 352
-  end
 end
