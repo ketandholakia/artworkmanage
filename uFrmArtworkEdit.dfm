@@ -13,6 +13,7 @@ object frmeditartwork: Tfrmeditartwork
   OldCreateOrder = False
   Position = poMainFormCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -42,14 +43,14 @@ object frmeditartwork: Tfrmeditartwork
       DataSource = DSartwork
     end
     object Label1: TLabel
-      Left = 15
+      Left = 18
       Top = 26
       Width = 53
       Height = 13
       Caption = 'Description'
     end
     object Label2: TLabel
-      Left = 17
+      Left = 18
       Top = 54
       Width = 64
       Height = 13
@@ -62,7 +63,7 @@ object frmeditartwork: Tfrmeditartwork
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 15
+      Left = 18
       Top = 82
       Width = 55
       Height = 13
@@ -88,8 +89,8 @@ object frmeditartwork: Tfrmeditartwork
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 17
-      Top = 111
+      Left = 18
+      Top = 141
       Width = 46
       Height = 13
       Caption = 'AwStatus'
@@ -101,8 +102,8 @@ object frmeditartwork: Tfrmeditartwork
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 19
-      Top = 144
+      Left = 18
+      Top = 174
       Width = 34
       Height = 13
       Caption = 'Priority'
@@ -150,21 +151,22 @@ object frmeditartwork: Tfrmeditartwork
       ParentFont = False
     end
     object Label9: TLabel
-      Left = 17
+      Left = 18
       Top = 201
       Width = 51
       Height = 13
       Caption = 'Order No. '
     end
     object Label10: TLabel
-      Left = 17
-      Top = 176
+      Left = 18
+      Top = 113
       Width = 36
       Height = 13
       Caption = 'Remark'
+      OnClick = Label10Click
     end
     object dbdescription: TRzDBEdit
-      Left = 88
+      Left = 86
       Top = 23
       Width = 462
       Height = 21
@@ -174,7 +176,7 @@ object frmeditartwork: Tfrmeditartwork
       TabOrder = 0
     end
     object dbrequiredqty: TRzDBEdit
-      Left = 88
+      Left = 86
       Top = 50
       Width = 160
       Height = 21
@@ -183,7 +185,7 @@ object frmeditartwork: Tfrmeditartwork
       TabOrder = 1
     end
     object dbprintedqty: TRzDBEdit
-      Left = 88
+      Left = 86
       Top = 79
       Width = 160
       Height = 21
@@ -192,8 +194,8 @@ object frmeditartwork: Tfrmeditartwork
       TabOrder = 2
     end
     object DBComboBox1: TDBComboBox
-      Left = 88
-      Top = 109
+      Left = 86
+      Top = 139
       Width = 160
       Height = 21
       DataField = 'awstatus'
@@ -205,11 +207,11 @@ object frmeditartwork: Tfrmeditartwork
         'platesent'
         'sentforapproval'
         'noartworkfile')
-      TabOrder = 3
+      TabOrder = 4
     end
     object DBComboBox2: TDBComboBox
-      Left = 88
-      Top = 139
+      Left = 86
+      Top = 169
       Width = 160
       Height = 21
       DataField = 'priority'
@@ -218,7 +220,7 @@ object frmeditartwork: Tfrmeditartwork
         'medium'
         'low'
         'high')
-      TabOrder = 4
+      TabOrder = 5
     end
     object DBLookupComboBoxOrderNo: TDBLookupComboBox
       Left = 86
@@ -231,17 +233,17 @@ object frmeditartwork: Tfrmeditartwork
       KeyField = 'id'
       ListField = 'orderno'
       ListSource = DSorder
-      TabOrder = 5
+      TabOrder = 6
     end
     object dbeditremark: TRzDBEdit
-      Left = 88
-      Top = 169
+      Left = 86
+      Top = 106
       Width = 462
       Height = 21
       DataSource = DSartwork
       DataField = 'remark'
       Anchors = [akLeft, akTop, akRight]
-      TabOrder = 6
+      TabOrder = 3
     end
   end
   object Panel2: TPanel
@@ -278,14 +280,51 @@ object frmeditartwork: Tfrmeditartwork
       TabOrder = 2
     end
   end
+  object DSartwork: TDataSource
+    DataSet = fdartwork
+    Left = 256
+    Top = 242
+  end
+  object DSorder: TDataSource
+    DataSet = fdorder
+    Left = 376
+    Top = 125
+  end
+  object fdorder: TFDQuery
+    Connection = Dm.FDConnection1
+    SQL.Strings = (
+      'select * from orders order by created_at desc'
+      '')
+    Left = 456
+    Top = 125
+    object fdorderid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdorderorderno: TStringField
+      FieldName = 'orderno'
+      Origin = 'orderno'
+      Required = True
+      Size = 255
+    end
+  end
   object fdartwork: TFDQuery
     AfterPost = fdartworkAfterPost
     OnCalcFields = fdartworkCalcFields
     Connection = Dm.FDConnection1
     SQL.Strings = (
-      'select * from artworks ')
+      'select * from artworks where id = :artwork_id')
     Left = 304
     Top = 146
+    ParamData = <
+      item
+        Name = 'ARTWORK_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
     object fdartworkid: TLargeintField
       AutoGenerateValue = arAutoInc
       FieldName = 'id'
@@ -299,9 +338,9 @@ object frmeditartwork: Tfrmeditartwork
       Size = 255
     end
     object fdartworkartworks_order_id: TLargeintField
-      AutoGenerateValue = arDefault
       FieldName = 'artworks_order_id'
       Origin = 'artworks_order_id'
+      Required = True
     end
     object fdartworkrequiredqty: TIntegerField
       AutoGenerateValue = arDefault
@@ -386,44 +425,14 @@ object frmeditartwork: Tfrmeditartwork
       FieldName = 'BalanceQty'
       Calculated = True
     end
-    object fdartworkartworkOrderNo: TStringField
+    object fdartworkDBLookupComboBoxOrderNo: TStringField
       FieldKind = fkLookup
-      FieldName = 'artworkOrderNo'
+      FieldName = 'DBLookupComboBoxOrderNo'
       LookupDataSet = fdorder
       LookupKeyFields = 'id'
       LookupResultField = 'orderno'
       KeyFields = 'artworks_order_id'
       Lookup = True
-    end
-  end
-  object DSartwork: TDataSource
-    DataSet = fdartwork
-    Left = 256
-    Top = 242
-  end
-  object DSorder: TDataSource
-    DataSet = fdorder
-    Left = 376
-    Top = 125
-  end
-  object fdorder: TFDQuery
-    Connection = Dm.FDConnection1
-    SQL.Strings = (
-      'select * from orders order by created_at desc'
-      '')
-    Left = 456
-    Top = 125
-    object fdorderid: TLargeintField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'id'
-      Origin = 'id'
-      ProviderFlags = [pfInWhere, pfInKey]
-    end
-    object fdorderorderno: TStringField
-      FieldName = 'orderno'
-      Origin = 'orderno'
-      Required = True
-      Size = 255
     end
   end
 end

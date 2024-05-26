@@ -143,7 +143,7 @@ uses uDm, uFrmArtwork, uFrmMain, uFrmArtworkEdit;
 
 procedure TfrmOrder.btnsearchartworkdetaildescClick(Sender: TObject);
 begin
-fdArtworkDetailTable.SQL.Text := 'select * from artworks where description like :searchartwork_text '+ ' and artworks_order_id = ' + IntToStr(fdOrderid.Value) + ' order by requiredqty' ;
+fdArtworkDetailTable.SQL.Text := 'select * from artworks where description like :searchartwork_text '+ ' and artworks_order_id = ' + IntToStr(fdOrderid.Value) + ' order by description asc' ;
 fdArtworkDetailTable.ParamByName('searchartwork_text').AsString := '%' + edtartworksearch.Text + '%';
 fdArtworkDetailTable.Open;
 
@@ -152,10 +152,12 @@ end;
 
 procedure TfrmOrder.Button1Click(Sender: TObject);
 begin
-fdorder.Insert;
-fdOrdercreated_at.Value := DateTimeToSQLTimeStamp(Now);
-fdOrderstatus.Value := 'neworder';
-fdOrderpriority.Value := 'medium';
+
+
+//fdorder.Insert;
+//fdOrdercreated_at.Value := DateTimeToSQLTimeStamp(Now);
+//fdOrderstatus.Value := 'neworder';
+//fdOrderpriority.Value := 'medium';
 
 end;
 
@@ -360,7 +362,10 @@ frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
 frmeditartwork.fdorder.Connection:=dm.FDConnection1;
 frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
 frmeditartwork.fdorder.Connection:=dm.FDConnection1;
-frmeditartwork.fdartwork.Active := true;
+frmeditartwork.fdorder.Active :=true;
+frmeditartwork.fdartwork.Active :=true;
+//frmeditartwork.fdartwork.SQL.Text := 'select * from artworks where id = :artwork_id';
+//frmeditartwork.fdartwork.ParamByName('artwork_id').AsString := IntToStr(fdArtworkDetailTableid.Value);
 frmeditartwork.fdartwork.Insert;
 frmeditartwork.fdartworkartworks_order_id.Value := fdOrderid.Value;
 frmeditartwork.fdartworkrequiredqty.Value := 0;

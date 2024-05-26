@@ -16,59 +16,15 @@ object frmArtwork: TfrmArtwork
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel2: TPanel
-    Left = 0
-    Top = 29
-    Width = 1075
-    Height = 41
-    Align = alTop
-    TabOrder = 0
-    object Button1: TButton
-      Left = 417
-      Top = 7
-      Width = 75
-      Height = 25
-      Caption = 'Add'
-      TabOrder = 0
-      OnClick = Button1Click
-    end
-    object btnsave: TButton
-      Left = 507
-      Top = 5
-      Width = 75
-      Height = 25
-      Caption = 'Save'
-      TabOrder = 1
-      OnClick = btnsaveClick
-    end
-    object Button3: TButton
-      Left = 680
-      Top = 7
-      Width = 75
-      Height = 25
-      Caption = 'delete'
-      TabOrder = 2
-      OnClick = Button3Click
-    end
-    object btnsaveclose: TButton
-      Left = 588
-      Top = 6
-      Width = 75
-      Height = 25
-      Caption = '&Save && Close'
-      TabOrder = 3
-      OnClick = btnsavecloseClick
-    end
-  end
   object rDBgridArtwork: TrDBGrid
     Left = 0
-    Top = 140
+    Top = 120
     Width = 1075
-    Height = 489
+    Height = 509
     Align = alClient
     DataSource = DSartwork
     PopupMenu = PopupMenuartworkgrid
-    TabOrder = 1
+    TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -151,32 +107,14 @@ object frmArtwork: TfrmArtwork
         Visible = True
       end>
   end
-  object ActionMainMenuBar1: TActionMainMenuBar
-    Left = 0
-    Top = 70
-    Width = 1075
-    Height = 29
-    UseSystemFont = False
-    Caption = 'ActionMainMenuBar1'
-    Color = clMenuBar
-    ColorMap.DisabledFontColor = 10461087
-    ColorMap.HighlightColor = clWhite
-    ColorMap.BtnSelectedFont = clBlack
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Spacing = 0
-  end
   object Panel3: TPanel
     Left = 0
-    Top = 99
+    Top = 79
     Width = 1075
     Height = 41
     Align = alTop
-    TabOrder = 3
+    TabOrder = 1
+    ExplicitTop = 99
     object Label11: TLabel
       Left = 14
       Top = 15
@@ -262,17 +200,72 @@ object frmArtwork: TfrmArtwork
     Left = 0
     Top = 0
     Width = 1075
-    Height = 29
+    Height = 79
+    Images = FrmMain.ImageList1
+    RowHeight = 75
+    ButtonWidth = 50
+    ButtonHeight = 90
+    TextOptions = ttoCustom
     BorderInner = fsNone
     BorderOuter = fsGroove
     BorderSides = [sdTop]
     BorderWidth = 0
-    TabOrder = 4
+    TabOrder = 2
     ToolbarControls = (
-      RzToolButton1)
-    object RzToolButton1: TRzToolButton
+      RzToolButtonaddartwork
+      RzSpacer1
+      RzToolButton2
+      RzSpacer2
+      RzToolButton3)
+    object RzToolButtonaddartwork: TRzToolButton
       Left = 4
-      Top = 2
+      Top = -6
+      Width = 68
+      Height = 90
+      ImageIndex = 0
+      Images = FrmMain.ImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Add Artwork'
+      OnClick = RzToolButtonaddartworkClick
+    end
+    object RzToolButton2: TRzToolButton
+      Left = 80
+      Top = -6
+      Width = 70
+      Height = 90
+      ImageIndex = 2
+      Images = FrmMain.ImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Edit Artwork '
+      OnClick = RzToolButton2Click
+    end
+    object RzToolButton3: TRzToolButton
+      Left = 158
+      Top = -6
+      Width = 83
+      Height = 90
+      ImageIndex = 1
+      Images = FrmMain.ImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Delet Aartwork '
+      OnClick = RzToolButton3Click
+    end
+    object RzSpacer1: TRzSpacer
+      Left = 72
+      Top = 27
+    end
+    object RzSpacer2: TRzSpacer
+      Left = 150
+      Top = 27
     end
   end
   object DSartwork: TDataSource

@@ -14,26 +14,6 @@ uses
 
 type
   Tfrmeditartwork = class(TForm)
-    fdartwork: TFDQuery;
-    fdartworkid: TLargeintField;
-    fdartworkdescription: TStringField;
-    fdartworkartworks_order_id: TLargeintField;
-    fdartworkrequiredqty: TIntegerField;
-    fdartworkjobrun: TIntegerField;
-    fdartworklabelrepeat: TIntegerField;
-    fdartworkprintedqty: TIntegerField;
-    fdartworkartworks_media_id: TLargeintField;
-    fdartworkcreated_at: TSQLTimeStampField;
-    fdartworkupdated_at: TSQLTimeStampField;
-    fdartworkremark: TStringField;
-    fdartworkawstatus: TStringField;
-    fdartworkprepressstage: TBooleanField;
-    fdartworkartworks_plate_id: TLargeintField;
-    fdartworktype: TStringField;
-    fdartworkpriority: TStringField;
-    fdartworkurl: TStringField;
-    fdartworkBalanceQty: TIntegerField;
-    fdartworkartworkOrderNo: TStringField;
     DSartwork: TDataSource;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -64,6 +44,26 @@ type
     fdorderid: TLargeintField;
     fdorderorderno: TStringField;
     dbcheckboxprepress: TDBCheckBox;
+    fdartwork: TFDQuery;
+    fdartworkid: TLargeintField;
+    fdartworkdescription: TStringField;
+    fdartworkartworks_order_id: TLargeintField;
+    fdartworkrequiredqty: TIntegerField;
+    fdartworkjobrun: TIntegerField;
+    fdartworklabelrepeat: TIntegerField;
+    fdartworkprintedqty: TIntegerField;
+    fdartworkartworks_media_id: TLargeintField;
+    fdartworkcreated_at: TSQLTimeStampField;
+    fdartworkupdated_at: TSQLTimeStampField;
+    fdartworkremark: TStringField;
+    fdartworkawstatus: TStringField;
+    fdartworkprepressstage: TBooleanField;
+    fdartworkartworks_plate_id: TLargeintField;
+    fdartworktype: TStringField;
+    fdartworkpriority: TStringField;
+    fdartworkurl: TStringField;
+    fdartworkBalanceQty: TIntegerField;
+    fdartworkDBLookupComboBoxOrderNo: TStringField;
     procedure FormShow(Sender: TObject);
     procedure btnsaveClick(Sender: TObject);
     procedure btncancelClick(Sender: TObject);
@@ -72,6 +72,10 @@ type
     procedure Panel1DblClick(Sender: TObject);
     procedure fdartworkAfterPost(DataSet: TDataSet);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure Label10Click(Sender: TObject);
+    procedure FDTable1AfterPost(DataSet: TDataSet);
+    procedure FDTable1CalcFields(DataSet: TDataSet);
 
 
 
@@ -110,15 +114,42 @@ begin
   end;
 end;
 
+procedure Tfrmeditartwork.FDTable1AfterPost(DataSet: TDataSet);
+begin
+dm.fdartworkcountprepress.RefreshRecord;
+dm.fdartworkcounthighpriority.refreshrecord;
+frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
+frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+
+
+end;
+
+procedure Tfrmeditartwork.FDTable1CalcFields(DataSet: TDataSet);
+begin
+fdartworkBalanceQty.Value := fdartworkprintedqty.Value - fdartworkrequiredqty.Value;
+end;
+
 procedure Tfrmeditartwork.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
+end;
+
+procedure Tfrmeditartwork.FormCreate(Sender: TObject);
+begin
+fdartwork.Connection
 end;
 
 procedure Tfrmeditartwork.FormShow(Sender: TObject);
 begin
   caption := 'Artwork Edit';
 end;
+procedure Tfrmeditartwork.Label10Click(Sender: TObject);
+begin
+
+end;
+
 //dbeditremark.SetFocus;
 //  if fdartwork.FieldByName('BalanceQty').AsInteger < 0   then
 //    dblabelbalance.Font.Color := clRed
@@ -170,34 +201,56 @@ end;
 
 procedure Tfrmeditartwork.btnsaveClick(Sender: TObject);
 
+// post if order form is open
 begin
-if dsartwork.State = dsEdit then
+if (dsartwork.State = dsEdit) and (IsFormOpen(Tfrmorder)) then
 begin
   fdartworkupdated_at.Value := DateTimeToSQLTimeStamp(Now);
   fdartwork.post;
+  frmOrder.fdArtworkDetailTable.Refresh;
+end;
+
+begin
+if (dsartwork.State = dsEdit) and (IsFormOpen(Tfrmartwork)) then
+begin
+  fdartworkupdated_at.Value := DateTimeToSQLTimeStamp(Now);
+  fdartwork.post;
+  frmartwork.fdartwork.Refresh;
 end;
 
 
-if dsartwork.State = dsinsert then
+if (dsartwork.State = dsinsert) and (IsFormOpen(Tfrmorder)) then
 begin
   fdartworkcreated_at.Value := DateTimeToSQLTimeStamp(Now);
+  fdartworkupdated_at.Value := DateTimeToSQLTimeStamp(Now);
   fdartwork.post;
+  frmOrder.fdArtworkDetailTable.Refresh;
 end;
-frmOrder.fdArtworkDetailTable.Close;
-frmOrder.fdArtworkDetailTable.Open;
+
+if (dsartwork.State = dsinsert) and (IsFormOpen(Tfrmartwork))  then
+begin
+  fdartworkcreated_at.Value := DateTimeToSQLTimeStamp(Now);
+  fdartworkupdated_at.Value := DateTimeToSQLTimeStamp(Now);
+  fdartwork.post;
+  frmartwork.fdartwork.Refresh;
+end;
+
+//frmOrder.fdArtworkDetailTable.Close;
+//frmOrder.fdArtworkDetailTable.Open;
 //frmOrder.fdArtworkDetailTable.Refresh;
 
 close;
 end;
+end;
 
 procedure Tfrmeditartwork.fdartworkAfterPost(DataSet: TDataSet);
 begin
-dm.fdartworkcountprepress.RefreshRecord;
-dm.fdartworkcounthighpriority.refreshrecord;
-frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
-frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
-frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
-frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+//dm.fdartworkcountprepress.RefreshRecord;
+//dm.fdartworkcounthighpriority.refreshrecord;
+//frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
+//frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
+//frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+//frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
 
 end;
 

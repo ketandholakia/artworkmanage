@@ -15,10 +15,6 @@ uses
 
 type
   TfrmArtwork = class(TForm)
-    Panel2: TPanel;
-    Button1: TButton;
-    btnsave: TButton;
-    Button3: TButton;
     DSartwork: TDataSource;
     fdartwork: TFDQuery;
     Qproses: TFDQuery;
@@ -53,7 +49,6 @@ type
     ActionManager1: TActionManager;
     actRefreshTable: TAction;
     Action2: TAction;
-    ActionMainMenuBar1: TActionMainMenuBar;
     RefreshTable1: TMenuItem;
     Panel3: TPanel;
     Label11: TLabel;
@@ -62,16 +57,18 @@ type
     Editsearchremark: TEdit;
     Label12: TLabel;
     chksearchprepress: TCheckBox;
-    btnsaveclose: TButton;
     PropSaveMain1: TPropSaveMain;
     Button2: TButton;
     EditArtwork1: TMenuItem;
     RzToolbar1: TRzToolbar;
-    RzToolButton1: TRzToolButton;
+    RzToolButtonaddartwork: TRzToolButton;
     btnsearchbyqty: TButton;
     edtfrom: TEdit;
     edtto: TEdit;
-    procedure Button1Click(Sender: TObject);
+    RzToolButton2: TRzToolButton;
+    RzToolButton3: TRzToolButton;
+    RzSpacer1: TRzSpacer;
+    RzSpacer2: TRzSpacer;
     procedure btnsaveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -92,6 +89,9 @@ type
     procedure rDBgridArtworkDblClick(Sender: TObject);
     procedure fdartworkBeforeInsert(DataSet: TDataSet);
     procedure btnsearchbyqtyClick(Sender: TObject);
+    procedure RzToolButtonaddartworkClick(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure RzToolButton3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,16 +111,6 @@ procedure TfrmArtwork.ActionManager1Execute(Action: TBasicAction;
   var Handled: Boolean);
 begin
 fdartwork.Refresh;
-end;
-
-procedure TfrmArtwork.Button1Click(Sender: TObject);
-begin
-fdartwork.Insert;
-fdartworkrequiredqty.Value := 0;
-fdartworkawstatus.Value := 'pending';
-fdartworkpriority.Value := 'medium';
-fdartworkprepressstage.Value := false;
-fdartworkcreated_at.Value := DateTimeToSQLTimeStamp(Now);
 end;
 
 procedure TfrmArtwork.btnsaveClick(Sender: TObject);
@@ -356,6 +346,80 @@ end;
 procedure TfrmArtwork.RefreshTable1Click(Sender: TObject);
 begin
 fdartwork.Refresh;
+end;
+
+procedure TfrmArtwork.RzToolButton2Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmeditartwork');
+  if not Assigned(aComponent) then
+    frmeditartwork := Tfrmeditartwork.Create(Application);
+  if frmeditartwork.WindowState = wsMinimized then
+    frmeditartwork.WindowState := wsNormal;
+  if frmeditartwork.visible = true then
+   frmeditartwork.FormShow(sender);
+
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection := dm.FDConnection1;
+frmeditartwork.fdartwork.SQL.Text := 'select * from artworks where id = ' + IntToStr(fdartworkid.Value);
+frmeditartwork.fdartwork.Open;
+frmeditartwork.show;
+screen.cursor := crDefault;
+end;
+
+procedure TfrmArtwork.RzToolButton3Click(Sender: TObject);
+begin
+        if fdartwork.State = dsBrowse then
+  begin
+    if MessageDlg('Are you sure you want to delete this Artwork record?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      fdartwork.Delete;
+  end;
+end;
+
+procedure TfrmArtwork.RzToolButtonaddartworkClick(Sender: TObject);
+
+//fdartwork.Insert;
+//fdartworkrequiredqty.Value := 0;
+//fdartworkawstatus.Value := 'pending';
+//fdartworkpriority.Value := 'medium';
+//fdartworkprepressstage.Value := false;
+//fdartworkcreated_at.Value := DateTimeToSQLTimeStamp(Now);
+
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmeditartwork');
+  if not Assigned(aComponent) then
+frmeditartwork := Tfrmeditartwork.Create(Application);
+
+  if frmeditartwork.WindowState = wsMinimized then
+    frmeditartwork.WindowState := wsNormal;
+  if frmeditartwork.visible = true then
+    frmeditartwork.FormShow(sender);
+
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Active :=true;
+frmeditartwork.fdartwork.Active :=true;
+//frmeditartwork.fdartwork.SQL.Text := 'select * from artworks where id = :artwork_id';
+//frmeditartwork.fdartwork.ParamByName('artwork_id').AsString := IntToStr(fdArtworkDetailTableid.Value);
+frmeditartwork.fdartwork.Insert;
+frmeditartwork.fdartworkartworks_order_id.Value := fdOrderid.Value;
+frmeditartwork.fdartworkrequiredqty.Value := 0;
+frmeditartwork.fdartworkawstatus.Value := 'pending';
+frmeditartwork.fdartworkpriority.Value := 'medium';
+frmeditartwork.fdartworkprepressstage.Value := false;
+frmeditartwork.show;
+frmeditartwork.dbdescription.setfocus;
+  screen.cursor := crDefault;
 end;
 
 end.

@@ -32,6 +32,7 @@ type
     RzStatusPanecompltedartwork: TRzStatusPane;
     RzStatusPanehighpriority: TRzStatusPane;
     RzStatusPane2: TRzStatusPane;
+    ImageList1: TImageList;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);
