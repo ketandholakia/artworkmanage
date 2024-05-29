@@ -510,34 +510,4 @@ object Dm: TDm
     Left = 587
     Top = 397
   end
-  object uilSecurityManager1: TuilSecurityManager
-    UserBindary.DataSource = dsusers
-    UserBindary.UserNameField = 'name'
-    UserBindary.FullNameField = 'FullName'
-    UserBindary.PasswordField = 'Password'
-    UserBindary.AccessCountField = 'AccessCount'
-    UserBindary.CreatedDateField = 'CreatedDate'
-    UserBindary.CreatedTimeField = 'CreatedTime'
-    UserBindary.EnabledField = 'Enabled'
-    UserBindary.LastAccessField = 'LastAccess'
-    UserBindary.LastAccessTimeField = 'LastAccTime'
-    UserBindary.UserPermissions.DataSource = dsuseraccess
-    UserBindary.UserPermissions.PermissionField = 'permission'
-    UserBindary.UserPermissions.UserNameField = 'UserName'
-    GroupBindary.DataSource = dsusergroup
-    GroupBindary.GroupNameField = 'GroupName'
-    GroupBindary.GroupDescriptionField = 'Description'
-    GroupBindary.GroupPermissions.DataSource = dsgroupaccess
-    GroupBindary.GroupPermissions.PermissionField = 'Permission'
-    GroupBindary.GroupPermissions.GroupNameField = 'UserName'
-    GroupBindary.GroupMembershipBindary.DataSource = dsgroupmember
-    GroupBindary.GroupMembershipBindary.GroupNameField = 'GroupName'
-    GroupBindary.GroupMembershipBindary.UserNameField = 'UserName'
-    PermissionBindary.DataSource = dsuserpermissions
-    PermissionBindary.PermissionField = 'Permission'
-    PermissionBindary.Storage = psForm
-    Version = '4.2.2.0'
-    Left = 320
-    Top = 256
-  end
 end

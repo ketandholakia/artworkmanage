@@ -138,7 +138,11 @@ end;
 
 procedure Tfrmeditartwork.FormCreate(Sender: TObject);
 begin
-fdartwork.Connection
+fdartwork.Connection := dm.FDConnection1;
+fdartwork.Active := true;
+fdorder.Connection := dm.FDConnection1;
+fdorder.Active := true;
+
 end;
 
 procedure Tfrmeditartwork.FormShow(Sender: TObject);

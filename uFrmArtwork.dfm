@@ -114,7 +114,6 @@ object frmArtwork: TfrmArtwork
     Height = 41
     Align = alTop
     TabOrder = 1
-    ExplicitTop = 99
     object Label11: TLabel
       Left = 14
       Top = 15
@@ -201,7 +200,7 @@ object frmArtwork: TfrmArtwork
     Top = 0
     Width = 1075
     Height = 79
-    Images = FrmMain.ImageList1
+    Images = FrmMain.IconFontsImageList1
     RowHeight = 75
     ButtonWidth = 50
     ButtonHeight = 90
@@ -223,7 +222,7 @@ object frmArtwork: TfrmArtwork
       Width = 68
       Height = 90
       ImageIndex = 0
-      Images = FrmMain.ImageList1
+      Images = FrmMain.IconFontsImageList1
       Layout = blGlyphTop
       ShowCaption = True
       UseToolbarButtonLayout = False
@@ -236,8 +235,8 @@ object frmArtwork: TfrmArtwork
       Top = -6
       Width = 70
       Height = 90
-      ImageIndex = 2
-      Images = FrmMain.ImageList1
+      ImageIndex = 1
+      Images = FrmMain.IconFontsImageList1
       Layout = blGlyphTop
       ShowCaption = True
       UseToolbarButtonLayout = False
@@ -248,15 +247,15 @@ object frmArtwork: TfrmArtwork
     object RzToolButton3: TRzToolButton
       Left = 158
       Top = -6
-      Width = 83
+      Width = 89
       Height = 90
-      ImageIndex = 1
-      Images = FrmMain.ImageList1
+      ImageIndex = 2
+      Images = FrmMain.IconFontsImageList1
       Layout = blGlyphTop
       ShowCaption = True
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
-      Caption = 'Delet Aartwork '
+      Caption = 'Delete Aartwork '
       OnClick = RzToolButton3Click
     end
     object RzSpacer1: TRzSpacer
@@ -452,6 +451,7 @@ object frmArtwork: TfrmArtwork
     Top = 312
     object OpenOrder1: TMenuItem
       Caption = 'Open Order'
+      ShortCut = 16463
       OnClick = OpenOrder1Click
     end
     object RefreshTable1: TMenuItem
@@ -460,6 +460,7 @@ object frmArtwork: TfrmArtwork
     end
     object EditArtwork1: TMenuItem
       Caption = 'Edit Artwork'
+      ShortCut = 16453
       OnClick = EditArtwork1Click
     end
   end

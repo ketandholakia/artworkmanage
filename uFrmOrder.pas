@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.DBCtrls,
   Vcl.ExtCtrls, Vcl.Mask, PropSaveMain, PropSaveGrids, frxClass, frxDesgn,
   frxDBSet, Vcl.Buttons, RzPanel, RzSplit, Vcl.Menus, rDBGridSorter_FireDac,
-  rXLSExport, SLKExport;
+  rXLSExport, SLKExport, RzButton;
 
 type
   TfrmOrder = class(TForm)
@@ -98,6 +98,14 @@ type
     ExporttoExcel1: TMenuItem;
     SLKExp: TSLKExport;
     XLSExp: TrXLSExport;
+    RzToolbar1: TRzToolbar;
+    RzToolButtonaddartwork: TRzToolButton;
+    RzToolButton2: TRzToolButton;
+    RzToolButton3: TRzToolButton;
+    RzSpacer1: TRzSpacer;
+    RzSpacer2: TRzSpacer;
+    RzToolButtonprintOrder: TRzToolButton;
+    RzSpacer3: TRzSpacer;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -126,6 +134,8 @@ type
     procedure rDBgridArtworkDblClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ExporttoExcel1Click(Sender: TObject);
+    procedure RzToolButtonprintOrderClick(Sender: TObject);
+    procedure RzToolButtonaddartworkClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -139,7 +149,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDm, uFrmArtwork, uFrmMain, uFrmArtworkEdit;
+uses uDm, uFrmArtwork, uFrmMain, uFrmArtworkEdit, ufrmOrderEdit;
 
 procedure TfrmOrder.btnsearchartworkdetaildescClick(Sender: TObject);
 begin
@@ -422,6 +432,54 @@ procedure TfrmOrder.Refresh1Click(Sender: TObject);
 begin
 fdArtworkDetailTable.Refresh;
 end;
+
+procedure TfrmOrder.RzToolButtonaddartworkClick(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmeditartwork');
+  if not Assigned(aComponent) then
+frmorderedit := Tfrmorderedit.Create(Application);
+
+  if frmorderedit.WindowState = wsMinimized then
+    frmorderedit.WindowState := wsNormal;
+  if frmorderedit.visible = true then
+    frmorderedit.FormShow(sender);
+
+
+frmorderedit.fdcustomer.Connection:=dm.FDConnection1;
+frmorderedit.fdorder.Connection:=dm.FDConnection1;
+frmorderedit.fdcustomer.Active :=true;
+frmorderedit.fdorder.Active :=true;
+//frmeditartwork.fdartwork.SQL.Text := 'select * from artworks where id = :artwork_id';
+//frmeditartwork.fdartwork.ParamByName('artwork_id').AsString := IntToStr(fdArtworkDetailTableid.Value);
+frmorderedit.fdorder.Insert;
+frmorderedit.fdorderstatus.Value :=  'approved';
+frmOrderedit.fdorderpriority.Value := 'medium';
+
+
+frmorderedit.show;
+
+
+
+frmorderedit.dborderno.setfocus;
+  screen.cursor := crDefault;
+end;
+
+
+procedure TfrmOrder.RzToolButtonprintOrderClick(Sender: TObject);
+var
+ xAppPath: string;
+begin
+
+ xAppPath := (ExtractFilePath(ParamStr(0)) + 'orderdetails.fr3');
+frxReport1.LoadFromFile(xAppPath);
+frxReport1.ShowReport();
+
+end;
+
+
 
 procedure TfrmOrder.SpeedButton1Click(Sender: TObject);
 var

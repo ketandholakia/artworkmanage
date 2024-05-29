@@ -10,7 +10,8 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   Data.FmtBcd, FireDAC.Comp.Client, System.Actions, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, RzStatus, Vcl.ExtCtrls,
-  RzPanel, System.ImageList, Vcl.ImgList, RzButton;
+  RzPanel, System.ImageList, Vcl.ImgList, RzButton, Vcl.BaseImageCollection,
+  IconFontsImageCollection, IconFontsImageListBase, IconFontsImageList;
 
 function IsFormOpen(FormClass: TFormClass): Boolean;
 
@@ -33,6 +34,7 @@ type
     RzStatusPanehighpriority: TRzStatusPane;
     RzStatusPane2: TRzStatusPane;
     ImageList1: TImageList;
+    IconFontsImageList1: TIconFontsImageList;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);

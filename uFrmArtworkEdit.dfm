@@ -293,7 +293,7 @@ object frmeditartwork: Tfrmeditartwork
   object fdorder: TFDQuery
     Connection = Dm.FDConnection1
     SQL.Strings = (
-      'select * from orders order by created_at desc'
+      'select * from orders order by  orderno asc'
       '')
     Left = 456
     Top = 125

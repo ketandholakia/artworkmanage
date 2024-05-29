@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
   Data.DB, FireDAC.Comp.Client, uFrmMain, FireDAC.Phys.MySQL, Vcl.Forms,
   FireDAC.Phys.MySQLDef, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, FireDAC.Comp.DataSet, uSecControl;
+  FireDAC.DApt, FireDAC.Comp.DataSet;
 
 type
   TDm = class(TDataModule)
@@ -90,7 +90,6 @@ type
     dsgroupmember: TDataSource;
     FDgroupmemberUserName: TStringField;
     FDgroupmemberGroupName: TStringField;
-    uilSecurityManager1: TuilSecurityManager;
     FDuserpermissionspermission: TStringField;
     FDuserpermissionsitems: TMemoField;
     FDuserpermissionsaction: TIntegerField;

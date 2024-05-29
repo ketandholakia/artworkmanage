@@ -1,0 +1,492 @@
+object frmArtwork: TfrmArtwork
+  Left = 0
+  Top = 0
+  Caption = 'Artworks'
+  ClientHeight = 629
+  ClientWidth = 1075
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object rDBgridArtwork: TrDBGrid
+    Left = 0
+    Top = 120
+    Width = 1075
+    Height = 509
+    Align = alClient
+    DataSource = DSartwork
+    PopupMenu = PopupMenuartworkgrid
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    OnDrawColumnCell = rDBgridArtworkDrawColumnCell
+    OnDblClick = rDBgridArtworkDblClick
+    Sorter = rDBGridSorter_FireDac1
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'prepressstage'
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'description'
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'artworkOrderNo'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'requiredqty'
+        Title.Alignment = taRightJustify
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'printedqty'
+        Title.Alignment = taRightJustify
+        Width = 50
+        Visible = True
+      end
+      item
+        Color = clSilver
+        Expanded = False
+        FieldName = 'BalanceQty'
+        Title.Alignment = taRightJustify
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'remark'
+        Width = 200
+        Visible = True
+      end
+      item
+        ButtonStyle = cbsEllipsis
+        Expanded = False
+        FieldName = 'created_at'
+        Width = 136
+        Visible = True
+      end
+      item
+        ButtonStyle = cbsEllipsis
+        Expanded = False
+        FieldName = 'updated_at'
+        Width = 136
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'awstatus'
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'priority'
+        Width = 50
+        Visible = True
+      end>
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 79
+    Width = 1075
+    Height = 41
+    Align = alTop
+    TabOrder = 1
+    object Label11: TLabel
+      Left = 14
+      Top = 15
+      Width = 53
+      Height = 13
+      Caption = 'Description'
+    end
+    object Label12: TLabel
+      Left = 319
+      Top = 15
+      Width = 36
+      Height = 13
+      Caption = 'Remark'
+    end
+    object EditSearchdescription: TEdit
+      Left = 80
+      Top = 12
+      Width = 105
+      Height = 21
+      TabOrder = 0
+      OnKeyPress = EditSearchdescriptionKeyPress
+    end
+    object btnsearchartwork: TButton
+      Left = 191
+      Top = 10
+      Width = 122
+      Height = 25
+      Caption = 'Search description'
+      TabOrder = 1
+      OnClick = btnsearchartworkClick
+    end
+    object Editsearchremark: TEdit
+      Left = 363
+      Top = 9
+      Width = 116
+      Height = 21
+      TabOrder = 2
+      OnKeyPress = EditsearchremarkKeyPress
+    end
+    object chksearchprepress: TCheckBox
+      Left = 676
+      Top = 11
+      Width = 67
+      Height = 17
+      Caption = 'Prepress'
+      TabOrder = 3
+    end
+    object Button2: TButton
+      Left = 506
+      Top = 8
+      Width = 157
+      Height = 25
+      Caption = 'Search by Remark'
+      TabOrder = 4
+    end
+    object btnsearchbyqty: TButton
+      Left = 989
+      Top = 10
+      Width = 75
+      Height = 25
+      Caption = 'Search by qty'
+      TabOrder = 5
+      OnClick = btnsearchbyqtyClick
+    end
+    object edtfrom: TEdit
+      Left = 814
+      Top = 11
+      Width = 70
+      Height = 21
+      NumbersOnly = True
+      TabOrder = 6
+    end
+    object edtto: TEdit
+      Left = 903
+      Top = 12
+      Width = 70
+      Height = 21
+      NumbersOnly = True
+      TabOrder = 7
+    end
+  end
+  object RzToolbar1: TRzToolbar
+    Left = 0
+    Top = 0
+    Width = 1075
+    Height = 79
+    Images = FrmMain.IconFontsImageList1
+    RowHeight = 75
+    ButtonWidth = 50
+    ButtonHeight = 90
+    TextOptions = ttoCustom
+    BorderInner = fsNone
+    BorderOuter = fsGroove
+    BorderSides = [sdTop]
+    BorderWidth = 0
+    TabOrder = 2
+    ToolbarControls = (
+      RzToolButtonaddartwork
+      RzSpacer1
+      RzToolButton2
+      RzSpacer2
+      RzToolButton3)
+    object RzToolButtonaddartwork: TRzToolButton
+      Left = 4
+      Top = -6
+      Width = 68
+      Height = 90
+      ImageIndex = 0
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Add Artwork'
+      OnClick = RzToolButtonaddartworkClick
+    end
+    object RzToolButton2: TRzToolButton
+      Left = 80
+      Top = -6
+      Width = 70
+      Height = 90
+      ImageIndex = 1
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Edit Artwork '
+      OnClick = RzToolButton2Click
+    end
+    object RzToolButton3: TRzToolButton
+      Left = 158
+      Top = -6
+      Width = 89
+      Height = 90
+      ImageIndex = 2
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Delete Aartwork '
+      OnClick = RzToolButton3Click
+    end
+    object RzSpacer1: TRzSpacer
+      Left = 72
+      Top = 27
+    end
+    object RzSpacer2: TRzSpacer
+      Left = 150
+      Top = 27
+    end
+  end
+  object DSartwork: TDataSource
+    DataSet = fdartwork
+    Left = 56
+    Top = 512
+  end
+  object fdartwork: TFDQuery
+    BeforeInsert = fdartworkBeforeInsert
+    AfterInsert = fdartworkAfterInsert
+    AfterPost = fdartworkAfterPost
+    OnCalcFields = fdartworkCalcFields
+    Connection = Dm.FDConnection1
+    SQL.Strings = (
+      
+        'select * from artworks where description like :search_text order' +
+        ' by created_at desc')
+    Left = 128
+    Top = 496
+    ParamData = <
+      item
+        Name = 'search_text'
+        DataType = ftString
+        ParamType = ptInput
+        Value = ''
+      end
+      item
+        Name = 'search_text_remark'
+        DataType = ftString
+        ParamType = ptInput
+      end>
+    object fdartworkid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdartworkdescription: TStringField
+      FieldName = 'description'
+      Origin = 'description'
+      Required = True
+      Size = 255
+    end
+    object fdartworkartworks_order_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'artworks_order_id'
+      Origin = 'artworks_order_id'
+    end
+    object fdartworkrequiredqty: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'requiredqty'
+      Origin = 'requiredqty'
+    end
+    object fdartworkjobrun: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'jobrun'
+      Origin = 'jobrun'
+    end
+    object fdartworklabelrepeat: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'labelrepeat'
+      Origin = 'labelrepeat'
+    end
+    object fdartworkprintedqty: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'printedqty'
+      Origin = 'printedqty'
+    end
+    object fdartworkartworks_media_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'artworks_media_id'
+      Origin = 'artworks_media_id'
+    end
+    object fdartworkcreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object fdartworkupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
+    object fdartworkremark: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'remark'
+      Origin = 'remark'
+      Size = 255
+    end
+    object fdartworkawstatus: TStringField
+      FieldName = 'awstatus'
+      Origin = 'awstatus'
+      Required = True
+      FixedChar = True
+      Size = 15
+    end
+    object fdartworkprepressstage: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'prepressstage'
+      Origin = 'prepressstage'
+    end
+    object fdartworkartworks_plate_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'artworks_plate_id'
+      Origin = 'artworks_plate_id'
+    end
+    object fdartworktype: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'type'
+      Origin = 'type'
+      FixedChar = True
+      Size = 9
+    end
+    object fdartworkpriority: TStringField
+      FieldName = 'priority'
+      Origin = 'priority'
+      Required = True
+      FixedChar = True
+      Size = 6
+    end
+    object fdartworkurl: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'url'
+      Origin = 'url'
+      Size = 2048
+    end
+    object fdartworkBalanceQty: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'BalanceQty'
+      Calculated = True
+    end
+    object fdartworkartworkOrderNo: TStringField
+      FieldKind = fkLookup
+      FieldName = 'artworkOrderNo'
+      LookupDataSet = fdorder
+      LookupKeyFields = 'id'
+      LookupResultField = 'orderno'
+      KeyFields = 'artworks_order_id'
+      Lookup = True
+    end
+  end
+  object Qproses: TFDQuery
+    Left = 648
+    Top = 336
+  end
+  object fdorder: TFDQuery
+    Connection = Dm.FDConnection1
+    SQL.Strings = (
+      'select * from orders order by created_at desc'
+      '')
+    Left = 136
+    Top = 408
+    object fdorderid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdorderorderno: TStringField
+      FieldName = 'orderno'
+      Origin = 'orderno'
+      Required = True
+      Size = 255
+    end
+  end
+  object DSorder: TDataSource
+    DataSet = fdorder
+    Left = 56
+    Top = 416
+  end
+  object rDBGridsPropSave1: TrDBGridsPropSave
+    PropSaveMain = PropSaveMain1
+    Components.Strings = (
+      'rDBgridArtwork')
+    StoreColumnsProp = True
+    StoreFieldsGroup = True
+    StoreFooterRow = True
+    StoreDesignSetting = True
+    Left = 392
+    Top = 504
+  end
+  object PopupMenuartworkgrid: TPopupMenu
+    Left = 80
+    Top = 312
+    object OpenOrder1: TMenuItem
+      Caption = 'Open Order'
+      OnClick = OpenOrder1Click
+    end
+    object RefreshTable1: TMenuItem
+      Action = actRefreshTable
+      OnClick = RefreshTable1Click
+    end
+    object EditArtwork1: TMenuItem
+      Caption = 'Edit Artwork'
+      OnClick = EditArtwork1Click
+    end
+  end
+  object rDBGridSorter_FireDac1: TrDBGridSorter_FireDac
+    GoToFirstAfterSort = True
+    GoToFirstAfterRefresh = True
+    Left = 568
+    Top = 472
+  end
+  object ActionManager1: TActionManager
+    OnExecute = ActionManager1Execute
+    Left = 744
+    Top = 304
+    StyleName = 'Platform Default'
+    object actRefreshTable: TAction
+      Caption = 'Refresh Table '
+      ShortCut = 116
+    end
+    object Action2: TAction
+      Caption = 'Action2'
+    end
+  end
+  object PropSaveMain1: TPropSaveMain
+    FormKey = 'Artworkform'
+    PropSaveFile = FrmMain.PropSaveFile1
+    CtrlPosition.PropSaveMain = PropSaveMain1
+    StdCtrl.PropSaveMain = PropSaveMain1
+    Left = 376
+    Top = 416
+  end
+end

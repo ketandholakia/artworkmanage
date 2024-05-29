@@ -192,7 +192,7 @@ procedure TfrmArtwork.btnsearchbyqtyClick(Sender: TObject);
 begin
 if StrToInt(edtfrom.Text) < StrToInt(edtto.Text) then
 begin
-fdartwork.SQL.Text := 'select * from artworks where requiredqty between :frmqty AND :toqty '+ ' order by created_at desc' ;
+fdartwork.SQL.Text := 'select * from artworks where requiredqty between :frmqty AND :toqty '+ ' and prepressstage = false order by created_at desc' ;
 fdartwork.ParamByName('frmqty').AsString := edtfrom.Text;
 fdartwork.ParamByName('toqty').AsString := edtto.Text;
 fdartwork.Open;

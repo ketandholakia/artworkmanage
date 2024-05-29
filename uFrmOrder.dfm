@@ -19,7 +19,7 @@ object frmOrder: TfrmOrder
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
-    Top = 0
+    Top = 79
     Width = 919
     Height = 124
     Align = alTop
@@ -146,7 +146,7 @@ object frmOrder: TfrmOrder
   end
   object Panel2: TPanel
     Left = 0
-    Top = 124
+    Top = 203
     Width = 919
     Height = 41
     Align = alTop
@@ -222,16 +222,16 @@ object frmOrder: TfrmOrder
   end
   object RzSizePanel1: TRzSizePanel
     Left = 0
-    Top = 391
+    Top = 470
     Width = 919
-    Height = 342
+    Height = 263
     Align = alClient
     TabOrder = 2
     object rDBgridArtwork: TrDBGrid
       Left = 0
       Top = 0
       Width = 919
-      Height = 342
+      Height = 263
       Align = alClient
       DataSource = DSArtworkDetail
       PopupMenu = PopupMenu1
@@ -320,7 +320,7 @@ object frmOrder: TfrmOrder
   end
   object RzSizePanel2: TRzSizePanel
     Left = 0
-    Top = 165
+    Top = 244
     Width = 919
     Height = 185
     Align = alTop
@@ -383,7 +383,7 @@ object frmOrder: TfrmOrder
   end
   object Panel3: TPanel
     Left = 0
-    Top = 350
+    Top = 429
     Width = 919
     Height = 41
     Align = alTop
@@ -429,6 +429,96 @@ object frmOrder: TfrmOrder
       Caption = 'Update'
       TabOrder = 3
       OnClick = btnupdateClick
+    end
+  end
+  object RzToolbar1: TRzToolbar
+    Left = 0
+    Top = 0
+    Width = 919
+    Height = 79
+    Images = FrmMain.IconFontsImageList1
+    RowHeight = 75
+    ButtonWidth = 50
+    ButtonHeight = 90
+    TextOptions = ttoCustom
+    BorderInner = fsNone
+    BorderOuter = fsGroove
+    BorderSides = [sdTop]
+    BorderWidth = 0
+    TabOrder = 5
+    ToolbarControls = (
+      RzToolButtonaddartwork
+      RzSpacer1
+      RzToolButton2
+      RzSpacer2
+      RzToolButton3
+      RzSpacer3
+      RzToolButtonprintOrder)
+    object RzToolButtonaddartwork: TRzToolButton
+      Left = 4
+      Top = -6
+      Width = 58
+      Height = 90
+      ImageIndex = 0
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Add Order'
+      OnClick = RzToolButtonaddartworkClick
+    end
+    object RzToolButton2: TRzToolButton
+      Left = 70
+      Top = -6
+      Width = 57
+      Height = 90
+      ImageIndex = 1
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Edit Order'
+    end
+    object RzToolButton3: TRzToolButton
+      Left = 135
+      Top = -6
+      Width = 70
+      Height = 90
+      ImageIndex = 2
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Delete Order'
+    end
+    object RzSpacer1: TRzSpacer
+      Left = 62
+      Top = 27
+    end
+    object RzSpacer2: TRzSpacer
+      Left = 127
+      Top = 27
+    end
+    object RzToolButtonprintOrder: TRzToolButton
+      Left = 213
+      Top = -6
+      Width = 64
+      Height = 90
+      ImageIndex = 3
+      Images = FrmMain.IconFontsImageList1
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Print Order '
+      OnClick = RzToolButtonprintOrderClick
+    end
+    object RzSpacer3: TRzSpacer
+      Left = 205
+      Top = 27
     end
   end
   object DSOrder: TDataSource
@@ -711,8 +801,8 @@ object frmOrder: TfrmOrder
       'begin'
       ''
       'end.')
-    Left = 40
-    Top = 216
+    Left = 56
+    Top = 272
     Datasets = <
       item
       end

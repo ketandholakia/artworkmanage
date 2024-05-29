@@ -4,8 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzGroupBar, Data.DB, dbisamtb,
-  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Mask, RzEdit, Vcl.DBCtrls, RzButton, RzRadChk,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzGroupBar, Data.DB, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Mask, RzEdit, Vcl.DBCtrls, RzButton, RzRadChk,
   Vcl.ExtCtrls;
 
 type

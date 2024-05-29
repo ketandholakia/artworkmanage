@@ -1343,4 +1343,30 @@ object FrmMain: TFrmMain
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
   end
+  object IconFontsImageList1: TIconFontsImageList
+    FontName = 'Font Awesome 6 Free Solid'
+    FontColor = clHotLight
+    Size = 32
+    IconFontItems = <
+      item
+        FontIconDec = 61525
+      end
+      item
+        FontIconDec = 61508
+      end
+      item
+        FontIconDec = 61453
+      end
+      item
+        FontIconDec = 61487
+      end
+      item
+      end
+      item
+      end
+      item
+      end>
+    Left = 360
+    Top = 464
+  end
 end
