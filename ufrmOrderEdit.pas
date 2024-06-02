@@ -39,6 +39,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnsaveClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -91,6 +92,7 @@ end;
 if (dsorder.State = dsinsert) and (IsFormOpen(Tfrmorder)) then
 begin
   fdordercreated_at.Value := DateTimeToSQLTimeStamp(Now);
+  fdorderupdated_at.Value  := DateTimeToSQLTimeStamp(Now);
   fdorder.post;
   frmOrder.fdArtworkDetailTable.Refresh;
 end;
@@ -110,6 +112,11 @@ end;
 close;
 end;
 end;
+procedure Tfrmorderedit.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+end;
+
 procedure Tfrmorderedit.FormCreate(Sender: TObject);
 begin
 //fdorder.Connection := dm.FDConnection1;

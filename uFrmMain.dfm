@@ -115,6 +115,14 @@ object FrmMain: TFrmMain
       Caption = 'Customers'
       OnClick = DataSupplier1Click
     end
+    object echnicalNames1: TMenuItem
+      Caption = 'Technical Names'
+      OnClick = echnicalNames1Click
+    end
+    object BrandName1: TMenuItem
+      Caption = 'Brand Name'
+      OnClick = BrandName1Click
+    end
   end
   object DBGridsPropSave1: TDBGridsPropSave
     PropSaveMain = PropSaveMain1

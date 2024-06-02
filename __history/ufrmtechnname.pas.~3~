@@ -1,0 +1,38 @@
+unit ufrmtechnname;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  Tfrmtechname = class(TForm)
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmtechname: Tfrmtechname;
+
+implementation
+
+{$R *.dfm}
+
+uses uDm, uFrmMain;
+
+procedure Tfrmtechname.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+end;
+
+procedure Tfrmtechname.FormShow(Sender: TObject);
+begin
+caption := 'Technical Name';
+end;
+
+end.

@@ -116,8 +116,7 @@ end;
 
 procedure Tfrmeditartwork.FDTable1AfterPost(DataSet: TDataSet);
 begin
-dm.fdartworkcountprepress.RefreshRecord;
-dm.fdartworkcounthighpriority.refreshrecord;
+dm.fdartworkcountprepress.open;
 frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
 frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
@@ -249,12 +248,15 @@ end;
 
 procedure Tfrmeditartwork.fdartworkAfterPost(DataSet: TDataSet);
 begin
-//dm.fdartworkcountprepress.RefreshRecord;
-//dm.fdartworkcounthighpriority.refreshrecord;
-//frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
-//frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
-//frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
-//frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+
+dm.fdartworkcountprepress.Active:= true;
+dm.fdartworkcounthighpriority.Active:= true;
+dm.fdartworkcountprepress.Open;
+dm.fdartworkcounthighpriority.open;
+frmmain.RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
+frmmain.RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
+frmmain.RzStatusPanehighpriority.Caption:= 'High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
 
 end;
 

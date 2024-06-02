@@ -35,6 +35,8 @@ type
     RzStatusPane2: TRzStatusPane;
     ImageList1: TImageList;
     IconFontsImageList1: TIconFontsImageList;
+    echnicalNames1: TMenuItem;
+    BrandName1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);
@@ -42,6 +44,8 @@ type
     procedure RzStatusPanependingartworksDblClick(Sender: TObject);
     procedure RzStatusPanecompltedartworkDblClick(Sender: TObject);
     procedure RzStatusPanehighpriorityDblClick(Sender: TObject);
+    procedure echnicalNames1Click(Sender: TObject);
+    procedure BrandName1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,7 +59,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDm, uFrmCustomer, uFrmOrder, uFrmArtwork;
+uses uDm, uFrmCustomer, uFrmOrder, uFrmArtwork, ufrmtechnname, ufrmBrandname;
 
 
 
@@ -74,6 +78,27 @@ begin
   end;
 end;
 
+procedure TFrmMain.BrandName1Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmbrandname');
+  if not Assigned(aComponent) then
+    frmbrandname := Tfrmbrandname.Create(Application);
+  if frmbrandname.WindowState = wsMinimized then
+    frmbrandname.WindowState := wsNormal;
+  if frmbrandname.visible = true then
+    frmbrandname.FormShow(sender);
+
+   frmbrandname.fdbrandname.Connection := dm.FDConnection1;
+ frmbrandname.fdbrandname.Open('select * from brandnames  order by brandnames_description asc');
+frmbrandname.fdbrandname.Active := true;
+ frmbrandname.Show;
+ screen.cursor := crDefault;
+
+end;
+
 procedure TFrmMain.DataSupplier1Click(Sender: TObject);
 var
   aComponent: TComponent;
@@ -90,11 +115,37 @@ begin
   screen.cursor := crDefault;
 end;
 
+procedure TFrmMain.echnicalNames1Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmtechname');
+  if not Assigned(aComponent) then
+    frmtechname := Tfrmtechname.Create(Application);
+  if frmtechname.WindowState = wsMinimized then
+    frmtechname.WindowState := wsNormal;
+  if frmtechname.visible = true then
+    frmtechname.FormShow(sender);
+
+   frmtechname.fdtechname.Connection := dm.FDConnection1;
+ frmtechname.fdtechname.Open('select * from technames order by techname_description asc');
+frmtechname.fdtechname.Active := true;
+frmtechname.fdtechname.Active := true;
+ frmtechname.Show;
+ screen.cursor := crDefault;
+
+end;
+
 procedure TFrmMain.FormShow(Sender: TObject);
 begin
 Caption:= 'Radhe Labels - Artwork Planner';
 dm.fdartworkcountprepress.Active:= true;
 dm.fdartworkcounthighpriority.Active:= true;
+dm.fdartworkcountprepress.Close;
+dm.fdartworkcountprepress.Open;
+dm.fdartworkcounthighpriority.Close;
+dm.fdartworkcounthighpriority.Open;
 RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdartworkcountprepressyes.value);
 RzStatusPanehighpriority.caption:='High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
@@ -210,7 +261,7 @@ frmartwork.fdartwork.Active := true;
 frmArtwork.Caption := 'Pending Artworks';
 frmartwork.show;
   screen.cursor := crDefault;
-
+RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartworkcountprepressno.value);
 
 
 end;

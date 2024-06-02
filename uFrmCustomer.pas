@@ -40,6 +40,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -114,6 +115,11 @@ begin
 
 end;
 
+
+procedure TFrmCustomer.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+end;
 
 procedure TFrmCustomer.FormShow(Sender: TObject);
 

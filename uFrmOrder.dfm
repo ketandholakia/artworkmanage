@@ -532,8 +532,8 @@ object frmOrder: TfrmOrder
     SQL.Strings = (
       'select * from orders'
       'order by created_at desc')
-    Left = 240
-    Top = 208
+    Left = 376
+    Top = 320
     object fdOrderid: TLargeintField
       AutoGenerateValue = arAutoInc
       FieldName = 'id'
@@ -600,7 +600,7 @@ object frmOrder: TfrmOrder
     SQL.Strings = (
       'select * from customers'
       'order by name')
-    Left = 504
+    Left = 560
     Top = 480
     object fdCustomerid: TLargeintField
       AutoGenerateValue = arAutoInc
@@ -1081,8 +1081,8 @@ object frmOrder: TfrmOrder
     DataSource = DSArtworkDetail
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 496
-    Top = 512
+    Left = 520
+    Top = 568
   end
   object PopupMenu1: TPopupMenu
     Left = 104
@@ -1130,5 +1130,14 @@ object frmOrder: TfrmOrder
   object XLSExp: TrXLSExport
     Left = 824
     Top = 164
+  end
+  object frxJPEGExport1: TfrxJPEGExport
+    UseFileCache = True
+    ShowProgress = True
+    OverwritePrompt = False
+    DataOnly = False
+    OnBeforeExport = frxJPEGExport1BeforeExport
+    Left = 456
+    Top = 376
   end
 end

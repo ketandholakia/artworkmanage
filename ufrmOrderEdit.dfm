@@ -11,6 +11,7 @@ object frmorderedit: Tfrmorderedit
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -103,7 +104,6 @@ object frmorderedit: Tfrmorderedit
     Height = 49
     Align = alBottom
     TabOrder = 4
-    ExplicitWidth = 551
     object btnsave: TRzButton
       Left = 443
       Top = 13

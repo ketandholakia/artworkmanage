@@ -13,7 +13,9 @@ uses
   uFrmArtwork in 'uFrmArtwork.pas' {frmArtwork},
   uartworkfilter in 'uartworkfilter.pas' {Form1},
   uFrmArtworkEdit in 'uFrmArtworkEdit.pas' {frmeditartwork},
-  ufrmOrderEdit in 'ufrmOrderEdit.pas' {frmorderedit};
+  ufrmOrderEdit in 'ufrmOrderEdit.pas' {frmorderedit},
+  ufrmtechnname in 'ufrmtechnname.pas' {frmtechname},
+  ufrmBrandname in 'ufrmBrandname.pas' {frmbrandname};
 
 {$R *.res}
 
@@ -28,5 +30,7 @@ begin
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(Tfrmeditartwork, frmeditartwork);
   Application.CreateForm(Tfrmorderedit, frmorderedit);
+  Application.CreateForm(Tfrmtechname, frmtechname);
+  Application.CreateForm(Tfrmbrandname, frmbrandname);
   Application.Run;
 end.

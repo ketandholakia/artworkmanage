@@ -132,6 +132,14 @@
             <Form>frmorderedit</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="ufrmtechnname.pas">
+            <Form>frmtechname</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmBrandname.pas">
+            <Form>frmbrandname</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.DBCtrls,
   Vcl.ExtCtrls, Vcl.Mask, PropSaveMain, PropSaveGrids, frxClass, frxDesgn,
   frxDBSet, Vcl.Buttons, RzPanel, RzSplit, Vcl.Menus, rDBGridSorter_FireDac,
-  rXLSExport, SLKExport, RzButton;
+  rXLSExport, SLKExport, RzButton, frxExportBaseDialog, frxExportImage;
 
 type
   TfrmOrder = class(TForm)
@@ -106,6 +106,7 @@ type
     RzSpacer2: TRzSpacer;
     RzToolButtonprintOrder: TRzToolButton;
     RzSpacer3: TRzSpacer;
+    frxJPEGExport1: TfrxJPEGExport;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -136,6 +137,7 @@ type
     procedure ExporttoExcel1Click(Sender: TObject);
     procedure RzToolButtonprintOrderClick(Sender: TObject);
     procedure RzToolButtonaddartworkClick(Sender: TObject);
+    procedure frxJPEGExport1BeforeExport(Sender: TObject);
   private
     { Private declarations }
   public
@@ -353,6 +355,13 @@ fdArtworkDetailTable.Active := true;
 
 
 end;
+
+procedure TfrmOrder.frxJPEGExport1BeforeExport(Sender: TObject);
+begin
+frxJPEGExport1.FileName := fdOrderorderno.Value + '.jpg';
+end;
+
+
 
 procedure TfrmOrder.PopupMenuAddartworkClick(Sender: TObject);
 var
