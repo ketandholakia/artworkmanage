@@ -11,7 +11,8 @@ uses
   Vcl.DBCtrls, Vcl.Mask, Vcl.ExtCtrls, PropSaveMain, PropSaveGrids, Vcl.Menus,
   rDBGridSorter_FireDac, System.Actions, Vcl.ActnList,
   Data.FmtBcd, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, Vcl.ToolWin, Vcl.ActnCtrls,
-  Vcl.ActnMenus, RzButton, RzPanel;
+  Vcl.ActnMenus, RzButton, RzPanel, FireDAC.Comp.BatchMove, FireDAC.Comp.BatchMove.Text,
+  FireDAC.Comp.BatchMove.DataSet;
 
 type
   TfrmArtwork = class(TForm)
@@ -69,6 +70,10 @@ type
     RzToolButton3: TRzToolButton;
     RzSpacer1: TRzSpacer;
     RzSpacer2: TRzSpacer;
+    OpenDialog1: TOpenDialog;
+    RzSpacer3: TRzSpacer;
+    BtnDown: TRzToolButton;
+    FDBatchMove: TFDBatchMove;
     procedure btnsaveClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -92,8 +97,14 @@ type
     procedure RzToolButtonaddartworkClick(Sender: TObject);
     procedure RzToolButton2Click(Sender: TObject);
     procedure RzToolButton3Click(Sender: TObject);
+    procedure BtnDownClick(Sender: TObject);
   private
     { Private declarations }
+    procedure CloseDataSets;
+    procedure OpenDataSets;
+    procedure SetUpReader;
+    procedure SetUpWriter;
+
   public
     { Public declarations }
   end;
@@ -107,10 +118,79 @@ implementation
 
 uses uDm, uFrmOrder, uFrmMain, uFrmArtworkEdit;
 
+
+
+procedure TfrmArtwork.CloseDataSets;
+begin
+  fdartwork.Close;
+end;
+
+procedure TfrmArtwork.OpenDataSets;
+begin
+  fdartwork.Close;
+  fdartwork.Open;
+
+end;
+
+procedure TfrmArtwork.SetUpReader;
+var
+  LTextReader: TFDBatchMoveTextReader;
+  LDataSetReader: TFDBatchMoveDataSetReader;
+
+ begin
+        // Create text reader
+        // FDBatchMove will automatically manage the reader instance.
+        LTextReader := TFDBatchMoveTextReader.Create(FDBatchMove);
+        // Set source text data file name
+        // data.txt provided with demo
+        LTextReader.FileName := OpenDialog1.FileName;
+        // Setup file format
+        LTextReader.DataDef.Separator := ';';
+        // to estabilish if first row is definition row (it is this case)
+        LTextReader.DataDef.WithFieldNames := True;
+
+end;
+
+procedure TfrmArtwork.SetUpWriter;
+var
+  LDataSetWriter: TFDBatchMoveDataSetWriter;
+  LTextWriter: TFDBatchMoveTextWriter;
+
+   begin
+        // Create dataset writer and set FDBatchMode as owner. Then
+        // FDBatchMove will automatically manage the writer instance.
+        LDataSetWriter := TFDBatchMoveDataSetWriter.Create(FDBatchMove);
+        // Set destination dataset
+        LDataSetWriter.DataSet := fdartwork;
+        // because dataset will be show on ui
+        LDataSetWriter.Optimise := False;
+      end;
+
+
 procedure TfrmArtwork.ActionManager1Execute(Action: TBasicAction;
   var Handled: Boolean);
 begin
 fdartwork.Refresh;
+end;
+
+procedure TfrmArtwork.BtnDownClick(Sender: TObject);
+begin
+OpenDialog1.Execute;
+
+ CloseDataSets;
+
+  // Create reader
+  SetUpReader;
+
+  // Create writer
+  SetUpWriter;
+
+  // Analyze source text file structure
+  FDBatchMove.GuessFormat;
+  FDBatchMove.Execute;
+
+  // show data
+  OpenDataSets;
 end;
 
 procedure TfrmArtwork.btnsaveClick(Sender: TObject);

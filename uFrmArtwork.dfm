@@ -215,7 +215,9 @@ object frmArtwork: TfrmArtwork
       RzSpacer1
       RzToolButton2
       RzSpacer2
-      RzToolButton3)
+      RzToolButton3
+      RzSpacer3
+      BtnDown)
     object RzToolButtonaddartwork: TRzToolButton
       Left = 4
       Top = -6
@@ -265,6 +267,25 @@ object frmArtwork: TfrmArtwork
     object RzSpacer2: TRzSpacer
       Left = 150
       Top = 27
+    end
+    object RzSpacer3: TRzSpacer
+      Left = 247
+      Top = 27
+    end
+    object BtnDown: TRzToolButton
+      Left = 255
+      Top = -6
+      Width = 65
+      Height = 90
+      Hint = 'Down'
+      DisabledIndex = 6
+      ImageIndex = 5
+      Layout = blGlyphTop
+      ShowCaption = True
+      UseToolbarButtonLayout = False
+      UseToolbarShowCaption = False
+      Caption = 'Import data'
+      OnClick = BtnDownClick
     end
   end
   object DSartwork: TDataSource
@@ -490,5 +511,17 @@ object frmArtwork: TfrmArtwork
     StdCtrl.PropSaveMain = PropSaveMain1
     Left = 376
     Top = 416
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 528
+    Top = 320
+  end
+  object FDBatchMove: TFDBatchMove
+    Mappings = <>
+    LogFileAction = laCreate
+    LogFileName = 'Data.log'
+    LogFileEncoding = ecUTF8
+    Left = 456
+    Top = 216
   end
 end

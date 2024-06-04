@@ -105,7 +105,14 @@ object FrmMain: TFrmMain
     Top = 248
     object System1: TMenuItem
       Caption = 'Artworks'
-      OnClick = System1Click
+      object Artworks1: TMenuItem
+        Caption = 'Artworks'
+        OnClick = Artworks1Click
+      end
+      object ImportArtworks1: TMenuItem
+        Caption = 'Import Artworks'
+        OnClick = ImportArtworks1Click
+      end
     end
     object Orders1: TMenuItem
       Caption = 'Orders'

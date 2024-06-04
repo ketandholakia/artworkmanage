@@ -15,7 +15,8 @@ uses
   uFrmArtworkEdit in 'uFrmArtworkEdit.pas' {frmeditartwork},
   ufrmOrderEdit in 'ufrmOrderEdit.pas' {frmorderedit},
   ufrmtechnname in 'ufrmtechnname.pas' {frmtechname},
-  ufrmBrandname in 'ufrmBrandname.pas' {frmbrandname};
+  ufrmBrandname in 'ufrmBrandname.pas' {frmbrandname},
+  ufrmartworkimport in 'ufrmartworkimport.pas' {frmartworkimport};
 
 {$R *.res}
 
@@ -32,5 +33,6 @@ begin
   Application.CreateForm(Tfrmorderedit, frmorderedit);
   Application.CreateForm(Tfrmtechname, frmtechname);
   Application.CreateForm(Tfrmbrandname, frmbrandname);
+  Application.CreateForm(Tfrmartworkimport, frmartworkimport);
   Application.Run;
 end.

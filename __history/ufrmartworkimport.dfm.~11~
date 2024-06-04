@@ -1,0 +1,67 @@
+object frmartworkimport: Tfrmartworkimport
+  Left = 0
+  Top = 0
+  Caption = 'frmartworkimport'
+  ClientHeight = 668
+  ClientWidth = 928
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid2: TDBGrid
+    Left = 0
+    Top = 64
+    Width = 928
+    Height = 120
+    Align = alTop
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object Button1: TButton
+    Left = 0
+    Top = 0
+    Width = 928
+    Height = 64
+    Align = alTop
+    Caption = 'Execute!'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 30
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    ExplicitLeft = -16
+    ExplicitTop = -32
+  end
+  object fdartwork: TFDQuery
+    SQL.Strings = (
+      
+        'select CUST_NO as ID, CONTACT_FIRST as FIRSTNAME, CONTACT_LAST a' +
+        's LASTNAME from {id CUSTOMER}')
+    Left = 572
+    Top = 144
+  end
+  object dsartwork: TDataSource
+    DataSet = fdartwork
+    Left = 316
+    Top = 208
+  end
+  object FDBatchMove: TFDBatchMove
+    Mappings = <>
+    LogFileAction = laCreate
+    LogFileName = 'Data.log'
+    LogFileEncoding = ecUTF8
+    Left = 456
+    Top = 216
+  end
+end

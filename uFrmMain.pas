@@ -37,15 +37,18 @@ type
     IconFontsImageList1: TIconFontsImageList;
     echnicalNames1: TMenuItem;
     BrandName1: TMenuItem;
+    ImportArtworks1: TMenuItem;
+    Artworks1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);
-    procedure System1Click(Sender: TObject);
     procedure RzStatusPanependingartworksDblClick(Sender: TObject);
     procedure RzStatusPanecompltedartworkDblClick(Sender: TObject);
     procedure RzStatusPanehighpriorityDblClick(Sender: TObject);
     procedure echnicalNames1Click(Sender: TObject);
     procedure BrandName1Click(Sender: TObject);
+    procedure ImportArtworks1Click(Sender: TObject);
+    procedure Artworks1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,7 +62,8 @@ implementation
 
 {$R *.dfm}
 
-uses uDm, uFrmCustomer, uFrmOrder, uFrmArtwork, ufrmtechnname, ufrmBrandname;
+uses uDm, uFrmCustomer, uFrmOrder, uFrmArtwork, ufrmtechnname, ufrmBrandname,
+  ufrmartworkimport;
 
 
 
@@ -76,6 +80,31 @@ begin
       Break;
     end;
   end;
+end;
+
+procedure TFrmMain.Artworks1Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmartwork');
+  if not Assigned(aComponent) then
+    frmartwork := Tfrmartwork.Create(Application);
+  if frmartwork.WindowState = wsMinimized then
+    frmartwork.WindowState := wsNormal;
+  if frmartwork.visible = true then
+   frmartwork.FormShow(sender);
+
+frmartwork.fdartwork.Connection:=dm.FDConnection1;
+frmartwork.fdorder.Connection:=dm.FDConnection1;
+frmartwork.fdartwork.Connection:=dm.FDConnection1;
+frmartwork.fdorder.Connection:=dm.FDConnection1;
+frmartwork.fdartwork.Open('select * from artworks order by created_at desc');
+frmartwork.fdorder.Active := true;
+frmartwork.fdartwork.Active := true;
+
+  frmartwork.Show;
+  screen.cursor := crDefault;
 end;
 
 procedure TFrmMain.BrandName1Click(Sender: TObject);
@@ -151,6 +180,28 @@ RzStatusPanecompltedartwork.caption:='Completed Artworks : ' + bcdToStr(Dm.fdart
 RzStatusPanehighpriority.caption:='High Priority Artworks : ' + bcdToStr(Dm.fdartworkcounthighpriorityHIGHPRIRITY.value);
 
 end;
+
+procedure TFrmMain.ImportArtworks1Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmartworkimport');
+  if not Assigned(aComponent) then
+    frmartworkimport := Tfrmartworkimport.Create(Application);
+  if frmartworkimport.WindowState = wsMinimized then
+    frmartworkimport.WindowState := wsNormal;
+  if frmartworkimport.visible = true then
+    frmartworkimport.FormShow(sender);
+frmartworkimport.fdartwork.Connection:=dm.FDConnection1;
+frmartworkimport.fdartwork.Active := true;
+//frmorder.fdArtworkDetailTable.Refresh;
+//frmorder.fdorder.Refresh;
+frmartworkimport.Show;
+screen.cursor := crDefault;
+end;
+
+
 
 procedure TFrmMain.Orders1Click(Sender: TObject);
 
@@ -266,30 +317,8 @@ RzStatusPanependingartworks.Caption:='Pending Artworks : ' + bcdToStr(Dm.fdartwo
 
 end;
 
-procedure TFrmMain.System1Click(Sender: TObject);
-var
-  aComponent: TComponent;
-begin
-  screen.cursor := crHourglass;
-  aComponent := Application.FindComponent('frmartwork');
-  if not Assigned(aComponent) then
-    frmartwork := Tfrmartwork.Create(Application);
-  if frmartwork.WindowState = wsMinimized then
-    frmartwork.WindowState := wsNormal;
-  if frmartwork.visible = true then
-   frmartwork.FormShow(sender);
 
-frmartwork.fdartwork.Connection:=dm.FDConnection1;
-frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmartwork.fdartwork.Connection:=dm.FDConnection1;
-frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmartwork.fdartwork.Open('select * from artworks order by created_at desc');
-frmartwork.fdorder.Active := true;
-frmartwork.fdartwork.Active := true;
 
-  frmartwork.Show;
-  screen.cursor := crDefault;
-end;
 
 
 
