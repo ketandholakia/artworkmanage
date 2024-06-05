@@ -77,6 +77,7 @@ if (dsorder.State = dsEdit) and (IsFormOpen(Tfrmorder)) then
 begin
   fdorderupdated_at.Value  := DateTimeToSQLTimeStamp(Now);
   fdorder.post;
+  frmOrder.fdorder.Refresh;
 //  frmOrder.fdArtworkDetailTable.Refresh;
 end;
 
@@ -85,6 +86,7 @@ if (dsorder.State = dsEdit) and (IsFormOpen(Tfrmartwork)) then
 begin
   fdorderupdated_at.Value  := DateTimeToSQLTimeStamp(Now);
   fdorder.Post;
+  Frmartwork.fdorder.refresh;
 //  frmartwork.fdartwork.Refresh;
 end;
 
@@ -94,6 +96,7 @@ begin
   fdordercreated_at.Value := DateTimeToSQLTimeStamp(Now);
   fdorderupdated_at.Value  := DateTimeToSQLTimeStamp(Now);
   fdorder.post;
+  frmorder.fdOrder.Refresh;
   frmOrder.fdArtworkDetailTable.Refresh;
 end;
 
@@ -102,6 +105,7 @@ begin
 fdordercreated_at.Value := DateTimeToSQLTimeStamp(Now);
 fdorderupdated_at.Value := DateTimeToSQLTimeStamp(Now);
 fdorder.Post;
+frmartwork.fdorder.Refresh;
 frmartwork.fdartwork.Refresh;
 end;
 

@@ -480,6 +480,7 @@ object frmOrder: TfrmOrder
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
       Caption = 'Edit Order'
+      OnClick = RzToolButton2Click
     end
     object RzToolButton3: TRzToolButton
       Left = 135
@@ -493,6 +494,7 @@ object frmOrder: TfrmOrder
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
       Caption = 'Delete Order'
+      OnClick = RzToolButton3Click
     end
     object RzSpacer1: TRzSpacer
       Left = 62

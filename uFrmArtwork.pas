@@ -124,19 +124,15 @@ procedure TfrmArtwork.CloseDataSets;
 begin
   fdartwork.Close;
 end;
-
 procedure TfrmArtwork.OpenDataSets;
 begin
   fdartwork.Close;
   fdartwork.Open;
-
 end;
-
 procedure TfrmArtwork.SetUpReader;
 var
   LTextReader: TFDBatchMoveTextReader;
   LDataSetReader: TFDBatchMoveDataSetReader;
-
  begin
         // Create text reader
         // FDBatchMove will automatically manage the reader instance.
@@ -148,14 +144,11 @@ var
         LTextReader.DataDef.Separator := ';';
         // to estabilish if first row is definition row (it is this case)
         LTextReader.DataDef.WithFieldNames := True;
-
 end;
-
 procedure TfrmArtwork.SetUpWriter;
 var
   LDataSetWriter: TFDBatchMoveDataSetWriter;
   LTextWriter: TFDBatchMoveTextWriter;
-
    begin
         // Create dataset writer and set FDBatchMode as owner. Then
         // FDBatchMove will automatically manage the writer instance.
@@ -181,14 +174,11 @@ OpenDialog1.Execute;
 
   // Create reader
   SetUpReader;
-
   // Create writer
   SetUpWriter;
-
   // Analyze source text file structure
   FDBatchMove.GuessFormat;
   FDBatchMove.Execute;
-
   // show data
   OpenDataSets;
 end;

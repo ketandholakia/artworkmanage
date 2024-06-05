@@ -138,6 +138,8 @@ type
     procedure RzToolButtonprintOrderClick(Sender: TObject);
     procedure RzToolButtonaddartworkClick(Sender: TObject);
     procedure frxJPEGExport1BeforeExport(Sender: TObject);
+    procedure RzToolButton2Click(Sender: TObject);
+    procedure RzToolButton3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -440,6 +442,40 @@ end;
 procedure TfrmOrder.Refresh1Click(Sender: TObject);
 begin
 fdArtworkDetailTable.Refresh;
+end;
+
+procedure TfrmOrder.RzToolButton2Click(Sender: TObject);
+var
+  aComponent: TComponent;
+begin
+  screen.cursor := crHourglass;
+  aComponent := Application.FindComponent('frmorderedit');
+  if not Assigned(aComponent) then
+    frmorderedit := Tfrmorderedit.Create(Application);
+  if frmorderedit.WindowState = wsMinimized then
+    frmorderedit.WindowState := wsNormal;
+  if frmorderedit.visible = true then
+   frmorderedit.FormShow(sender);
+
+frmorderedit.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
+frmeditartwork.fdorder.Connection:=dm.FDConnection1;
+frmeditartwork.fdartwork.Connection := dm.FDConnection1;
+frmeditartwork.fdartwork.SQL.Text := 'select * from orders where id = ' + IntToStr(fdOrderid.Value);
+frmeditartwork.fdartwork.Open;
+frmeditartwork.show;
+screen.cursor := crDefault;
+end;
+
+
+procedure TfrmOrder.RzToolButton3Click(Sender: TObject);
+begin
+        if fdOrder.State = dsBrowse then
+  begin
+    if MessageDlg('Are you sure you want to delete this Order record?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      fdOrder.Delete;
+  end;
 end;
 
 procedure TfrmOrder.RzToolButtonaddartworkClick(Sender: TObject);
