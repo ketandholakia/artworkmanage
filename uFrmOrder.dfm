@@ -17,221 +17,78 @@ object frmOrder: TfrmOrder
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object Panel2: TPanel
     Left = 0
     Top = 79
     Width = 919
-    Height = 124
-    Align = alTop
-    TabOrder = 0
-    object Label1: TLabel
-      Left = 16
-      Top = 9
-      Width = 31
-      Height = 13
-      Caption = 'Label1'
-    end
-    object Label2: TLabel
-      Left = 16
-      Top = 45
-      Width = 31
-      Height = 13
-      Caption = 'Label2'
-    end
-    object Label3: TLabel
-      Left = 534
-      Top = 9
-      Width = 57
-      Height = 13
-      Caption = 'Created on '
-    end
-    object DBText1: TDBText
-      Left = 606
-      Top = 9
-      Width = 170
-      Height = 17
-      DataField = 'created_at'
-      DataSource = DSOrder
-    end
-    object Label4: TLabel
-      Left = 534
-      Top = 38
-      Width = 57
-      Height = 13
-      Caption = 'Updated at '
-    end
-    object DBText2: TDBText
-      Left = 605
-      Top = 38
-      Width = 170
-      Height = 17
-      DataField = 'updated_at'
-      DataSource = DSOrder
-    end
-    object Label5: TLabel
-      Left = 14
-      Top = 82
-      Width = 31
-      Height = 13
-      Caption = 'Status'
-    end
-    object Label6: TLabel
-      Left = 342
-      Top = 81
-      Width = 34
-      Height = 13
-      Caption = 'Priority'
-    end
-    object DBEdit1: TDBEdit
-      Left = 74
-      Top = 6
-      Width = 439
-      Height = 21
-      DataField = 'orderno'
-      DataSource = DSOrder
-      TabOrder = 0
-    end
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 74
-      Top = 44
-      Width = 439
-      Height = 21
-      DataField = 'orders_customer_id'
-      DataSource = DSOrder
-      KeyField = 'id'
-      ListField = 'name'
-      ListSource = DSCustomer
-      TabOrder = 1
-    end
-    object DBComboBox1: TDBComboBox
-      Left = 73
-      Top = 78
-      Width = 236
-      Height = 21
-      DataField = 'status'
-      DataSource = DSOrder
-      Items.Strings = (
-        'neworder'
-        'inprocess'
-        'noartwork'
-        'approved'
-        'cancelled'
-        'printed'
-        'delivered'
-        'preprocessdone'
-        'approvalpending')
-      TabOrder = 2
-    end
-    object DBComboBox2: TDBComboBox
-      Left = 409
-      Top = 78
-      Width = 236
-      Height = 21
-      DataField = 'priority'
-      DataSource = DSOrder
-      Items.Strings = (
-        'medium'
-        'low'
-        'high')
-      TabOrder = 3
-    end
-    object chkeditmode: TCheckBox
-      Left = 822
-      Top = 5
-      Width = 97
-      Height = 17
-      Caption = '&Edit Mode'
-      TabOrder = 4
-    end
-  end
-  object Panel2: TPanel
-    Left = 0
-    Top = 203
-    Width = 919
     Height = 41
     Align = alTop
-    TabOrder = 1
+    TabOrder = 0
+    ExplicitTop = 203
     object Label11: TLabel
-      Left = 270
-      Top = 14
+      Left = 18
+      Top = 12
       Width = 107
       Height = 13
       Caption = 'Search by Description '
     end
     object SpeedButton1: TSpeedButton
-      Left = 837
-      Top = 10
+      Left = 887
+      Top = 9
       Width = 23
       Height = 22
       Caption = 'D'
       OnClick = SpeedButton1Click
     end
-    object Button1: TButton
-      Left = 9
-      Top = 7
-      Width = 75
-      Height = 25
-      Caption = 'Add'
-      TabOrder = 0
-      OnClick = Button1Click
-    end
-    object Button2: TButton
-      Left = 91
-      Top = 8
-      Width = 75
-      Height = 25
-      Caption = 'Save'
-      TabOrder = 1
-      OnClick = Button2Click
-    end
-    object Button3: TButton
-      Left = 178
-      Top = 8
-      Width = 75
-      Height = 25
-      Caption = 'delete'
-      TabOrder = 2
-      OnClick = Button3Click
+    object Label1: TLabel
+      Left = 419
+      Top = 11
+      Width = 88
+      Height = 13
+      Caption = 'Filter by Customer'
     end
     object EditSearchorderdesc: TEdit
-      Left = 384
-      Top = 10
+      Left = 138
+      Top = 8
       Width = 144
       Height = 21
-      TabOrder = 3
+      TabOrder = 0
       OnKeyPress = EditSearchorderdescKeyPress
     end
     object btnsearchorder: TButton
-      Left = 534
-      Top = 8
+      Left = 288
+      Top = 5
       Width = 119
       Height = 25
       Caption = 'Search Order'
-      TabOrder = 4
+      TabOrder = 1
       OnClick = btnsearchorderClick
     end
-    object Button5: TButton
-      Left = 711
-      Top = 8
-      Width = 107
-      Height = 25
-      Caption = 'Print Order'
-      TabOrder = 5
-      OnClick = Button5Click
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 532
+      Top = 9
+      Width = 145
+      Height = 21
+      KeyField = 'id'
+      ListField = 'name'
+      ListSource = DSCustomer
+      TabOrder = 2
     end
   end
   object RzSizePanel1: TRzSizePanel
     Left = 0
-    Top = 470
+    Top = 346
     Width = 919
-    Height = 263
+    Height = 387
     Align = alClient
-    TabOrder = 2
+    TabOrder = 1
+    ExplicitTop = 470
+    ExplicitHeight = 263
     object rDBgridArtwork: TrDBGrid
       Left = 0
       Top = 0
       Width = 919
-      Height = 263
+      Height = 387
       Align = alClient
       DataSource = DSArtworkDetail
       PopupMenu = PopupMenu1
@@ -320,11 +177,12 @@ object frmOrder: TfrmOrder
   end
   object RzSizePanel2: TRzSizePanel
     Left = 0
-    Top = 244
+    Top = 120
     Width = 919
     Height = 185
     Align = alTop
-    TabOrder = 3
+    TabOrder = 2
+    ExplicitTop = 244
     object rdbgridOrder: TrDBGrid
       Left = 0
       Top = 0
@@ -383,11 +241,12 @@ object frmOrder: TfrmOrder
   end
   object Panel3: TPanel
     Left = 0
-    Top = 429
+    Top = 305
     Width = 919
     Height = 41
     Align = alTop
-    TabOrder = 4
+    TabOrder = 3
+    ExplicitTop = 429
     object Label7: TLabel
       Left = 12
       Top = 14
@@ -445,7 +304,7 @@ object frmOrder: TfrmOrder
     BorderOuter = fsGroove
     BorderSides = [sdTop]
     BorderWidth = 0
-    TabOrder = 5
+    TabOrder = 4
     ToolbarControls = (
       RzToolButtonaddartwork
       RzSpacer1
@@ -529,7 +388,6 @@ object frmOrder: TfrmOrder
     Top = 216
   end
   object fdOrder: TFDQuery
-    BeforeEdit = fdOrderBeforeEdit
     Connection = Dm.FDConnection1
     SQL.Strings = (
       'select * from orders'
@@ -636,7 +494,6 @@ object frmOrder: TfrmOrder
   end
   object fdArtworkDetailTable: TFDQuery
     BeforeInsert = fdArtworkDetailTableBeforeInsert
-    BeforeEdit = fdArtworkDetailTableBeforeEdit
     BeforePost = fdArtworkDetailTableBeforePost
     OnCalcFields = fdArtworkDetailTableCalcFields
     CachedUpdates = True

@@ -15,17 +15,7 @@ uses
 
 type
   TfrmOrder = class(TForm)
-    Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    DBText1: TDBText;
-    Label4: TLabel;
-    DBText2: TDBText;
     Panel2: TPanel;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
     DSOrder: TDataSource;
     fdOrder: TFDQuery;
     Qproses: TFDQuery;
@@ -37,16 +27,10 @@ type
     fdOrderupdated_at: TSQLTimeStampField;
     fdOrderpriority: TStringField;
     fdOrderurl: TStringField;
-    DBEdit1: TDBEdit;
-    DBLookupComboBox1: TDBLookupComboBox;
     fdCustomer: TFDQuery;
     DSCustomer: TDataSource;
     fdCustomerid: TLargeintField;
     fdCustomername: TStringField;
-    DBComboBox1: TDBComboBox;
-    Label5: TLabel;
-    DBComboBox2: TDBComboBox;
-    Label6: TLabel;
     rDBGridsPropSave1: TrDBGridsPropSave;
     Label11: TLabel;
     EditSearchorderdesc: TEdit;
@@ -72,7 +56,6 @@ type
     DSArtworkDetail: TDataSource;
     frxDesigner1: TfrxDesigner;
     frxReport1: TfrxReport;
-    Button5: TButton;
     frxDBDatasetordermaster: TfrxDBDataset;
     frxDBDatasetartowkrdetails: TfrxDBDataset;
     fdOrdercustomername: TStringField;
@@ -91,7 +74,6 @@ type
     btnsearchartworkdetaildesc: TButton;
     chkprepressdone: TCheckBox;
     rDBGridSorter_FireDac1: TrDBGridSorter_FireDac;
-    chkeditmode: TCheckBox;
     PropSaveMain1: TPropSaveMain;
     fdArtworkDetailTableBalanceQty: TIntegerField;
     btnupdate: TButton;
@@ -107,6 +89,8 @@ type
     RzToolButtonprintOrder: TRzToolButton;
     RzSpacer3: TRzSpacer;
     frxJPEGExport1: TfrxJPEGExport;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Label1: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -126,8 +110,6 @@ type
     procedure chkprepressdoneClick(Sender: TObject);
     procedure EditSearchorderdescKeyPress(Sender: TObject; var Key: Char);
     procedure edtartworksearchKeyPress(Sender: TObject; var Key: Char);
-    procedure fdOrderBeforeEdit(DataSet: TDataSet);
-    procedure fdArtworkDetailTableBeforeEdit(DataSet: TDataSet);
     procedure fdArtworkDetailTableCalcFields(DataSet: TDataSet);
     procedure btnupdateClick(Sender: TObject);
     procedure fdArtworkDetailTableBeforeInsert(DataSet: TDataSet);
@@ -306,11 +288,6 @@ begin
     XLSExp.ExportDBTable(rDBgridArtwork)
 end;
 
-procedure TfrmOrder.fdArtworkDetailTableBeforeEdit(DataSet: TDataSet);
-begin
- if chkeditmode.Checked = false then
-    raise(EAbort.create(''));
-end;
 
 procedure TfrmOrder.fdArtworkDetailTableBeforeInsert(DataSet: TDataSet);
 begin
@@ -327,11 +304,6 @@ begin
 fdArtworkDetailTableBalanceQty.Value := fdArtworkDetailTableprintedqty.Value -  fdArtworkDetailTablerequiredqty.Value;
 end;
 
-procedure TfrmOrder.fdOrderBeforeEdit(DataSet: TDataSet);
-begin
- if chkeditmode.Checked = false then
-    raise(EAbort.create(''));
-end;
 
 procedure TfrmOrder.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -458,13 +430,12 @@ begin
    frmorderedit.FormShow(sender);
 
 frmorderedit.fdorder.Connection:=dm.FDConnection1;
-frmeditartwork.fdorder.Connection:=dm.FDConnection1;
-frmeditartwork.fdartwork.Connection:=dm.FDConnection1;
-frmeditartwork.fdorder.Connection:=dm.FDConnection1;
-frmeditartwork.fdartwork.Connection := dm.FDConnection1;
-frmeditartwork.fdartwork.SQL.Text := 'select * from orders where id = ' + IntToStr(fdOrderid.Value);
-frmeditartwork.fdartwork.Open;
-frmeditartwork.show;
+frmorderedit.fdcustomer.Connection:=dm.FDConnection1;
+frmorderedit.fdcustomer.Active := true;
+frmorderedit.fdcustomer.Active := true;
+frmorderedit.fdorder.SQL.Text := 'select * from orders where id = ' + IntToStr(fdOrderid.Value);
+frmorderedit.fdorder.Open;
+frmorderedit.show;
 screen.cursor := crDefault;
 end;
 
