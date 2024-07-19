@@ -10,6 +10,7 @@ object frmorderedit: Tfrmorderedit
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
@@ -118,6 +119,27 @@ object frmorderedit: Tfrmorderedit
       Caption = '&Cancel'
       TabOrder = 1
     end
+    object DBCheckBox1: TDBCheckBox
+      Left = 15
+      Top = 20
+      Width = 97
+      Height = 17
+      Caption = 'com&pleted'
+      DataField = 'completed'
+      DataSource = dsorder
+      TabOrder = 2
+    end
+  end
+  object rDBCheckBoxcomplted: TrDBCheckBox
+    Left = 91
+    Top = 138
+    Width = 97
+    Height = 17
+    Caption = 'Order &Completed'
+    DataField = 'completed'
+    DataSource = dsorder
+    TabOrder = 5
+    ShowFieldCaption = False
   end
   object dsorder: TDataSource
     DataSet = fdorder
@@ -128,8 +150,8 @@ object frmorderedit: Tfrmorderedit
     Connection = Dm.FDConnection1
     SQL.Strings = (
       'select * from orders')
-    Left = 40
-    Top = 144
+    Left = 32
+    Top = 176
     object fdorderid: TLargeintField
       AutoGenerateValue = arAutoInc
       FieldName = 'id'
@@ -183,13 +205,18 @@ object frmorderedit: Tfrmorderedit
       Origin = 'remark'
       Size = 255
     end
+    object fdordercompleted: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'completed'
+      Origin = 'completed'
+    end
   end
   object fdcustomer: TFDQuery
     Connection = Dm.FDConnection1
     SQL.Strings = (
       'select * from customers order by name asc')
-    Left = 128
-    Top = 136
+    Left = 200
+    Top = 160
   end
   object dsCustomer: TDataSource
     DataSet = fdcustomer

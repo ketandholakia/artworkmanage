@@ -3,15 +3,17 @@ object frmOrder: TfrmOrder
   Top = 0
   Caption = 'Orders'
   ClientHeight = 733
-  ClientWidth = 919
+  ClientWidth = 1073
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
   Position = poMainFormCenter
+  Visible = True
   OnClose = FormClose
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -20,11 +22,11 @@ object frmOrder: TfrmOrder
   object Panel2: TPanel
     Left = 0
     Top = 79
-    Width = 919
+    Width = 1073
     Height = 41
     Align = alTop
     TabOrder = 0
-    ExplicitTop = 203
+    ExplicitWidth = 919
     object Label11: TLabel
       Left = 18
       Top = 12
@@ -78,16 +80,15 @@ object frmOrder: TfrmOrder
   object RzSizePanel1: TRzSizePanel
     Left = 0
     Top = 346
-    Width = 919
+    Width = 1073
     Height = 387
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 470
-    ExplicitHeight = 263
+    ExplicitWidth = 919
     object rDBgridArtwork: TrDBGrid
       Left = 0
       Top = 0
-      Width = 919
+      Width = 1073
       Height = 387
       Align = alClient
       DataSource = DSArtworkDetail
@@ -178,15 +179,15 @@ object frmOrder: TfrmOrder
   object RzSizePanel2: TRzSizePanel
     Left = 0
     Top = 120
-    Width = 919
+    Width = 1073
     Height = 185
     Align = alTop
     TabOrder = 2
-    ExplicitTop = 244
+    ExplicitWidth = 919
     object rdbgridOrder: TrDBGrid
       Left = 0
       Top = 0
-      Width = 919
+      Width = 1073
       Height = 180
       Align = alClient
       DataSource = DSOrder
@@ -197,24 +198,45 @@ object frmOrder: TfrmOrder
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
       OnDrawColumnCell = rdbgridOrderDrawColumnCell
+      OptionsEx2.Filters.FunnelBtn = True
+      OptionsEx2.Filters.MultiFieldFilter = True
+      OptionsEx2.Filters.TextFilterType = oftExactValue
       Sorter = rDBGridSorter_FireDac1
       Columns = <
         item
           Expanded = False
           FieldName = 'orderno'
-          Width = 200
+          Width = 186
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'customername'
-          Width = 80
+          Width = 93
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'status'
           Width = 60
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'priority'
+          Width = 50
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'remark'
+          Width = 251
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'completed'
+          Width = 86
           Visible = True
         end
         item
@@ -230,23 +252,17 @@ object frmOrder: TfrmOrder
           FieldName = 'updated_at'
           Width = 136
           Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'priority'
-          Width = 50
-          Visible = True
         end>
     end
   end
   object Panel3: TPanel
     Left = 0
     Top = 305
-    Width = 919
+    Width = 1073
     Height = 41
     Align = alTop
     TabOrder = 3
-    ExplicitTop = 429
+    ExplicitWidth = 919
     object Label7: TLabel
       Left = 12
       Top = 14
@@ -293,7 +309,7 @@ object frmOrder: TfrmOrder
   object RzToolbar1: TRzToolbar
     Left = 0
     Top = 0
-    Width = 919
+    Width = 1073
     Height = 79
     Images = FrmMain.IconFontsImageList1
     RowHeight = 75
@@ -305,6 +321,7 @@ object frmOrder: TfrmOrder
     BorderSides = [sdTop]
     BorderWidth = 0
     TabOrder = 4
+    ExplicitWidth = 919
     ToolbarControls = (
       RzToolButtonaddartwork
       RzSpacer1
@@ -316,7 +333,7 @@ object frmOrder: TfrmOrder
     object RzToolButtonaddartwork: TRzToolButton
       Left = 4
       Top = -6
-      Width = 58
+      Width = 65
       Height = 90
       ImageIndex = 0
       Images = FrmMain.IconFontsImageList1
@@ -324,13 +341,13 @@ object frmOrder: TfrmOrder
       ShowCaption = True
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
-      Caption = 'Add Order'
+      Caption = '&Add Order'
       OnClick = RzToolButtonaddartworkClick
     end
     object RzToolButton2: TRzToolButton
-      Left = 70
+      Left = 77
       Top = -6
-      Width = 57
+      Width = 64
       Height = 90
       ImageIndex = 1
       Images = FrmMain.IconFontsImageList1
@@ -338,13 +355,13 @@ object frmOrder: TfrmOrder
       ShowCaption = True
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
-      Caption = 'Edit Order'
+      Caption = '&Edit Order'
       OnClick = RzToolButton2Click
     end
     object RzToolButton3: TRzToolButton
-      Left = 135
+      Left = 149
       Top = -6
-      Width = 70
+      Width = 77
       Height = 90
       ImageIndex = 2
       Images = FrmMain.IconFontsImageList1
@@ -352,21 +369,21 @@ object frmOrder: TfrmOrder
       ShowCaption = True
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
-      Caption = 'Delete Order'
+      Caption = '&Delete Order'
       OnClick = RzToolButton3Click
     end
     object RzSpacer1: TRzSpacer
-      Left = 62
+      Left = 69
       Top = 27
     end
     object RzSpacer2: TRzSpacer
-      Left = 127
+      Left = 141
       Top = 27
     end
     object RzToolButtonprintOrder: TRzToolButton
-      Left = 213
+      Left = 234
       Top = -6
-      Width = 64
+      Width = 71
       Height = 90
       ImageIndex = 3
       Images = FrmMain.IconFontsImageList1
@@ -374,11 +391,11 @@ object frmOrder: TfrmOrder
       ShowCaption = True
       UseToolbarButtonLayout = False
       UseToolbarShowCaption = False
-      Caption = 'Print Order '
+      Caption = '&Print Order '
       OnClick = RzToolButtonprintOrderClick
     end
     object RzSpacer3: TRzSpacer
-      Left = 205
+      Left = 226
       Top = 27
     end
   end
@@ -392,8 +409,8 @@ object frmOrder: TfrmOrder
     SQL.Strings = (
       'select * from orders'
       'order by created_at desc')
-    Left = 376
-    Top = 320
+    Left = 64
+    Top = 176
     object fdOrderid: TLargeintField
       AutoGenerateValue = arAutoInc
       FieldName = 'id'
@@ -449,6 +466,17 @@ object frmOrder: TfrmOrder
       LookupResultField = 'name'
       KeyFields = 'orders_customer_id'
       Lookup = True
+    end
+    object fdOrderremark: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'remark'
+      Origin = 'remark'
+      Size = 255
+    end
+    object fdOrdercompleted: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'completed'
+      Origin = 'completed'
     end
   end
   object Qproses: TFDQuery

@@ -53,6 +53,7 @@
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <SanitizedProjectName>awmanage</SanitizedProjectName>
+        <DCC_Define>EUREKALOG_VER7;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;dxFlowChartRS26;dxPSdxMapControlLnkRS26;DBXDb2Driver;vclactnband;dxBarRS26;vclFireDAC;tmswizdXE10starter;dxFireDACEMFRS26;tethering;dxSpreadSheetInplaceRichEditRS26;FireDACADSDriver;dxSkinVisualStudio2013BlueRS26;dxRichEditCoreRS26;dxPSdxSpreadSheetLnkRS26;dxSkinSharpPlusRS26;FireDACMSSQLDriver;vcltouch;vcldb;svn;dxPSTeeChartRS26;dxSkinFoggyRS26;dxSkinVisualStudio2013DarkRS26;dxSkinOffice2013DarkGrayRS26;dxGDIPlusRS26;dxAuthorizationAgentsRS26;dxPSdxFCLnkRS26;FIBPlus_D28;vclib;frxTee26;dxPSLnksRS26;FireDACDBXDriver;cxGridRS26;dxPsPrVwAdvRS26;dxPDFViewerRS26;dxSkinSpringTimeRS26;vclx;dxPScxTLLnkRS26;dxSkinOffice2010BlueRS26;RESTBackendComponents;dxSkinOffice2016DarkRS26;VCLRESTComponents;dxSkinMoneyTwinsRS26;dxSkinOffice2016ColorfulRS26;fsTee26;dxSkinValentineRS26;EhLibDBXDataDrivers260;dxSkinHighContrastRS26;vclie;bindengine;CloudService;dxmdsRS26;FireDACMySQLDriver;fsIBX26;dxdborRS26;frx26;DataSnapClient;dxSkinOffice2013WhiteRS26;dxFireDACServerModeRS26;bindcompdbx;DBXSybaseASEDriver;IndyIPServer;cxPivotGridRS26;IndySystem;fsADO26;dxSkinDarkRoomRS26;frxDBX26;cxTreeListdxBarPopupMenuRS26;dsnapcon;cxTreeListRS26;dxPScxPivotGridLnkRS26;VirtualTreesR;cxSchedulerRibbonStyleEventEditorRS26;dxPSCoreRS26;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;dxSpreadSheetRS26;dxBarExtItemsRS26;dxPSdxGaugeControlLnkRS26;emshosting;dxSkinLondonLiquidSkyRS26;TestDesignTime;DBXOdbcDriver;FireDACTDataDriver;FMXTee;dxdbtrRS26;dxRichEditControlCoreRS26;soaprtl;DbxCommonDriver;dxFlowChartAdvancedCustomizeFormRS26;dxSkinLiquidSkyRS26;dxSkinSevenRS26;dxDockingRS26;xmlrtl;soapmidas;DataSnapNativeClient;fmxobj;cxLibraryRS26;rtl;emsserverresource;DbxClientDriver;DBXSybaseASADriver;cxDataRS26;dxPScxSchedulerLnkRS26;dxSpreadSheetConditionalFormattingDialogsRS26;appanalytics;dxRibbonCustomizationFormRS26;cxSchedulerGridRS26;IndyIPClient;bindcompvcl;EhLibIBXDataDrivers260;dxSkinVisualStudio2013LightRS26;TeeUI;dxADOEMFRS26;VclSmp;FireDACODBCDriver;dxRibbonRS26;DataSnapIndy10ServerTransport;dxPScxCommonRS26;WA_2020;dxRichEditDocumentModelRS26;DataSnapProviderClient;FireDACMongoDBDriver;dxPScxGridLnkRS26;dxSkinDevExpressDarkStyleRS26;ZTED_RIO_103;dxSpreadSheetCoreRS26;DataSnapServerMidas;RESTComponents;ZComponent;dxSkinGlassOceansRS26;DBXInterBaseDriver;finger_print;dxPScxExtCommonRS26;ZCore;dxSkinPumpkinRS26;EhLibADODataDrivers260;emsclientfiredac;dxSkinXmas2008BlueRS26;DataSnapFireDAC;svnui;dxSkinOffice2007SilverRS26;cxPageControlRS26;dxSkinTheBezierRS26;dxSkinDevExpressStyleRS26;DBXMSSQLDriver;JPRINT_RIO_103;dxRichEditControlRS26;DatasnapConnectorsFreePascal;dxGaugeControlRS26;dxorgcRS26;dxPScxVGridLnkRS26;bindcompfmx;TMSWEBCorePkgLibDXE12;dxSkinOffice2007PinkRS26;DBXOracleDriver;inetdb;dxSkinOffice2007BlueRS26;CEF4Delphi;dxSkinStardustRS26;dxBarDBNavRS26;dxDBXServerModeRS26;dxSkinTheAsphaltWorldRS26;dxSkinSilverRS26;FmxTeeUI;emsedge;dxLayoutControlRS26;FireDACIBDriver;fmx;fmxdae;dxServerModeRS26;dxWizardControlRS26;dxSkinBlueprintRS26;DBBumberEditPro;dxSkiniMaginaryRS26;dxTabbedMDIRS26;fs26;dxEMFRS26;dbexpress;IndyCore;dxComnRS26;TestRunTime;ZParseSql;EsDBEditDelphi;frxIntIO26;dsnap;DataSnapCommon;emsclient;uniGUI26m;FireDACCommon;uniGUI26Chart;dxSkinSharpRS26;frxcs26;DataSnapConnectors;cxSchedulerTreeBrowserRS26;dxADOServerModeRS26;soapserver;dxSkinOffice2007BlackRS26;cxPivotGridOLAPRS26;cxVerticalGridRS26;dxtrmdRS26;FireDACOracleDriver;DBXMySQLDriver;cxEditorsRS26;cxSchedulerRS26;cxSchedulerWebServiceStorageRS26;DBXFirebirdDriver;dxSkinMetropolisDarkRS26;dxSkinOffice2010BlackRS26;dxPSdxLCLnkRS26;CPortLibDXE;FireDACCommonODBC;FireDACCommonDriver;dxMapControlRS26;dxSkinBlackRS26;dxSkinOffice2013LightGrayRS26;frxIntIOIndy26;inet;dxSpellCheckerRS26;dxSkinCoffeeRS26;IndyIPCommon;tmsexdXE10starter;dxSpreadSheetCoreConditionalFormattingDialogsRS26;vcl;dxPSdxDBOCLnkRS26;EhLib260;dxSkinMetropolisRS26;frxDB26;FireDACDb2Driver;dxSpreadSheetReportDesignerRS26;dxPScxPCProdRS26;tmsdXE10starter;dxNavBarRS26;uniGUI26VCL;dxCoreRS26;fsDB26;ZDbc;TeeDB;FireDAC;dxThemeRS26;dxHttpIndyRequestRS26;cxExportRS26;dxPSPrVwRibbonRS26;dxSkinOffice2010SilverRS26;frxe26;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FireDACASADriver;dxSkinSevenClassicRS26;cxPivotGridChartRS26;dxPSRichEditControlLnkRS26;frxIBX26;dxPSDBTeeChartRS26;ibxpress;Tee;DataSnapServer;ibxbindings;dxPSdxDBTVLnkRS26;vclwinx;FireDACDSDriver;frxADO26;dxOfficeCoreRS26;dxTileControlRS26;dxSkinsCoreRS26;CustomIPTransport;vcldsnap;bindcomp;ZPlain;dxSkinLilianRS26;DBXInformixDriver;dxSkinSummer2008RS26;dxPSdxOCLnkRS26;dxSkinVS2010RS26;TMSWEBCorePkgDXE12;SynEdit_R;dxSkinBlueRS26;EsEditDelphi;dbxcds;adortl;dxSkinMcSkinRS26;dxSkinDarkSideRS26;dxSpreadSheetCoreDialogsRS26;dxBarExtDBItemsRS26;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;dxSkinOffice2007GreenRS26;dxRichEditInplaceRS26;dxSkinWhiteprintRS26;dxPSdxPDFViewerLnkRS26;dxSkinCaramelRS26;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
@@ -97,16 +98,13 @@
         </DelphiCompile>
         <DCCReference Include="uFrmMain.pas">
             <Form>FrmMain</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDm.pas">
             <Form>Dm</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uFrmCustomer.pas">
             <Form>FrmCustomer</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="HumanDateDiff.Lang.BR.pas"/>
         <DCCReference Include="HumanDateDiff.Lang.EN.pas"/>
@@ -114,35 +112,27 @@
         <DCCReference Include="HumanDateDiff.pas"/>
         <DCCReference Include="uFrmOrder.pas">
             <Form>frmOrder</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uFrmArtwork.pas">
             <Form>frmArtwork</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uartworkfilter.pas">
             <Form>Form1</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uFrmArtworkEdit.pas">
             <Form>frmeditartwork</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmOrderEdit.pas">
             <Form>frmorderedit</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmtechnname.pas">
             <Form>frmtechname</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmBrandname.pas">
             <Form>frmbrandname</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmartworkimport.pas">
             <Form>frmartworkimport</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -165,7 +155,6 @@
                     <Source Name="MainSource">awmanage.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\AbbreviaFMXDDesign270.bpl">TurboPack Abbrevia FMX Designtime Delphi package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>

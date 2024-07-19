@@ -20,14 +20,11 @@ object Dm: TDm
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     DriverID = 'Connector'
-    VendorLib = 
-      'C:\Users\ketan\OneDrive\Documents\GitHub\artworkmanage\libmysql.' +
-      'dll'
+    VendorLib = 'C:\Users\Ketan\Documents\GitHub\artworkmanage\libmysql.dll'
     Left = 40
     Top = 64
   end
   object fdartworkcountprepress: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       
@@ -192,7 +189,7 @@ object Dm: TDm
   object fdorder: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
-      'select * from orders order by created_at desc')
+      'SELECT * FROM orders ')
     Left = 32
     Top = 200
     object fdorderid: TLargeintField
@@ -248,11 +245,18 @@ object Dm: TDm
       Origin = 'remark'
       Size = 255
     end
+    object fdordercompleted: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'completed'
+      Origin = 'completed'
+    end
   end
   object fdartworkcounthighpriority: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
-      'SELECT SUM(priority = '#39'high'#39') AS HIGHPRIRITY FROM artworks')
+      
+        'SELECT SUM(priority = '#39'high'#39' AND prepressstage = 0) AS HIGHPRIRI' +
+        'TY FROM artworks')
     Left = 264
     Top = 336
     object fdartworkcounthighpriorityHIGHPRIRITY: TFMTBCDField

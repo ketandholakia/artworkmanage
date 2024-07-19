@@ -21,6 +21,7 @@ type
     fdbrandnametechnames_id: TLargeintField;
     rDBGrid1: TrDBGrid;
     procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -35,6 +36,11 @@ implementation
 {$R *.dfm}
 
 uses uDm, uFrmMain, ufrmtechnname;
+
+procedure Tfrmbrandname.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+end;
 
 procedure Tfrmbrandname.FormShow(Sender: TObject);
 begin

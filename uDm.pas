@@ -94,6 +94,7 @@ type
     FDuserpermissionsitems: TMemoField;
     FDuserpermissionsaction: TIntegerField;
     FDuserpermissionsFormName: TStringField;
+    fdordercompleted: TBooleanField;
     procedure FDConnection1AfterConnect(Sender: TObject);
     procedure FDConnection1BeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);

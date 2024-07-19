@@ -1,6 +1,19 @@
 program awmanage;
 
 uses
+  {$IFDEF EurekaLog}
+  EMemLeaks,
+  EResLeaks,
+  EDebugExports,
+  EDebugJCL,
+  EFixSafeCallException,
+  EMapWin32,
+  EAppVCL,
+  EDialogWinAPIMSClassic,
+  EDialogWinAPIEurekaLogDetailed,
+  EDialogWinAPIStepsToReproduce,
+  ExceptionLog7,
+  {$ENDIF EurekaLog}
   Vcl.Forms,
   uFrmMain in 'uFrmMain.pas' {FrmMain},
   uDm in 'uDm.pas' {Dm: TDataModule},
@@ -25,14 +38,15 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrmMain, FrmMain);
   Application.CreateForm(TDm, Dm);
-  Application.CreateForm(TFrmCustomer, FrmCustomer);
-  Application.CreateForm(TfrmOrder, frmOrder);
-  Application.CreateForm(TfrmArtwork, frmArtwork);
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(Tfrmeditartwork, frmeditartwork);
-  Application.CreateForm(Tfrmorderedit, frmorderedit);
-  Application.CreateForm(Tfrmtechname, frmtechname);
-  Application.CreateForm(Tfrmbrandname, frmbrandname);
   Application.CreateForm(Tfrmartworkimport, frmartworkimport);
   Application.Run;
 end.
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+object frmTechNameEdit: TfrmTechNameEdit
+  Left = 0
+  Top = 0
+  Caption = 'frmTechNameEdit'
+  ClientHeight = 295
+  ClientWidth = 606
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 606
+    Height = 246
+    Align = alClient
+    TabOrder = 0
+    ExplicitWidth = 635
+    ExplicitHeight = 250
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 246
+    Width = 606
+    Height = 49
+    Align = alBottom
+    TabOrder = 1
+    ExplicitTop = 250
+    ExplicitWidth = 635
+    object btnsave: TRzButton
+      Left = 475
+      Top = 13
+      Default = True
+      Caption = '&Save'
+      TabOrder = 0
+      OnClick = btnsaveClick
+    end
+    object btncancel: TRzButton
+      Left = 372
+      Top = 12
+      Caption = '&Cancel'
+      TabOrder = 1
+    end
+  end
+  object DBEdit1: TDBEdit
+    Left = 82
+    Top = 32
+    Width = 365
+    Height = 21
+    TabOrder = 2
+  end
+  object DSartwork: TDataSource
+    Left = 272
+    Top = 66
+  end
+  object Dstechname: TDataSource
+    DataSet = fdtechname
+    Left = 352
+    Top = 61
+  end
+  object fdtechname: TFDQuery
+    Connection = Dm.FDConnection1
+    SQL.Strings = (
+      'select * from technames')
+    Left = 408
+    Top = 69
+    object fdtechnameid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdtechnametechname_description: TStringField
+      FieldName = 'techname_description'
+      Origin = 'techname_description'
+      Required = True
+      Size = 255
+    end
+    object fdtechnametechnames_brandname_id: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'technames_brandname_id'
+      Origin = 'technames_brandname_id'
+    end
+    object fdtechnamecreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object fdtechnameupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
+  end
+end

@@ -91,6 +91,8 @@ type
     frxJPEGExport1: TfrxJPEGExport;
     DBLookupComboBox1: TDBLookupComboBox;
     Label1: TLabel;
+    fdOrderremark: TStringField;
+    fdOrdercompleted: TBooleanField;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -384,6 +386,9 @@ end;
 procedure TfrmOrder.rDBgridArtworkDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
+
+
+
 if fdArtworkDetailTable.FieldByName('prepressstage').AsBoolean = true then
  begin
    rDBgridArtwork.Canvas.Font.Color := clBlack;
@@ -405,6 +410,18 @@ begin
  begin
   rdbgridOrder.Canvas.Font.Color := clwhite;
   rdbgridOrder.canvas.Brush.Color := clWebGreen;
+ end;
+
+     if fdorder.FieldByName('completed').AsBoolean = false then
+ begin
+  rdbgridOrder.Canvas.Font.Color := clBlack;
+  rdbgridOrder.canvas.Brush.Color := clWebCornSilk;
+ end;
+
+     if fdorder.FieldByName('completed').AsBoolean = true then
+ begin
+  rdbgridOrder.Canvas.Font.Color := clBlack;
+  rdbgridOrder.canvas.Brush.Color := clWebPaleGreen;
  end;
 
 

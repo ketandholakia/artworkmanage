@@ -1,0 +1,226 @@
+object FrmCustomer: TFrmCustomer
+  Left = 0
+  Top = 0
+  Caption = 'Customers'
+  ClientHeight = 451
+  ClientWidth = 747
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 747
+    Height = 89
+    Align = alTop
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 16
+      Top = 9
+      Width = 31
+      Height = 13
+      Caption = 'Label1'
+    end
+    object Label2: TLabel
+      Left = 16
+      Top = 41
+      Width = 31
+      Height = 13
+      Caption = 'Label2'
+    end
+    object Label3: TLabel
+      Left = 342
+      Top = 11
+      Width = 57
+      Height = 13
+      Caption = 'Created on '
+    end
+    object DBText1: TDBText
+      Left = 414
+      Top = 11
+      Width = 170
+      Height = 17
+      DataField = 'created_at'
+      DataSource = DSCustomer
+    end
+    object Label4: TLabel
+      Left = 342
+      Top = 43
+      Width = 57
+      Height = 13
+      Caption = 'Updated at '
+    end
+    object DBText2: TDBText
+      Left = 413
+      Top = 43
+      Width = 170
+      Height = 17
+      DataField = 'updated_at'
+      DataSource = DSCustomer
+    end
+    object DBEdit1: TDBEdit
+      Left = 85
+      Top = 8
+      Width = 236
+      Height = 21
+      DataField = 'name'
+      DataSource = DSCustomer
+      TabOrder = 0
+    end
+    object DBEdit2: TDBEdit
+      Left = 87
+      Top = 40
+      Width = 236
+      Height = 21
+      DataField = 'City'
+      DataSource = DSCustomer
+      TabOrder = 1
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 89
+    Width = 747
+    Height = 41
+    Align = alTop
+    TabOrder = 1
+    object Button1: TButton
+      Left = 40
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Add'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 128
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'Save'
+      TabOrder = 1
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Left = 232
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'delete'
+      TabOrder = 2
+      OnClick = Button3Click
+    end
+  end
+  object rDBGridCustomer: TrDBGrid
+    Left = 0
+    Top = 130
+    Width = 747
+    Height = 321
+    Align = alClient
+    DataSource = DSCustomer
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'id'
+        Title.Alignment = taRightJustify
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'name'
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'City'
+        Width = 200
+        Visible = True
+      end
+      item
+        ButtonStyle = cbsEllipsis
+        Expanded = False
+        FieldName = 'created_at'
+        Width = 136
+        Visible = True
+      end
+      item
+        ButtonStyle = cbsEllipsis
+        Expanded = False
+        FieldName = 'updated_at'
+        Width = 136
+        Visible = True
+      end>
+  end
+  object DSCustomer: TDataSource
+    DataSet = fdCustomer
+    Left = 160
+    Top = 216
+  end
+  object fdCustomer: TFDQuery
+    Connection = Dm.FDConnection1
+    SQL.Strings = (
+      'select * from customers'
+      'order by name;')
+    Left = 240
+    Top = 208
+    object fdCustomerid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object fdCustomername: TStringField
+      FieldName = 'name'
+      Origin = '`name`'
+      Required = True
+      Size = 255
+    end
+    object fdCustomerCity: TStringField
+      FieldName = 'City'
+      Origin = 'City'
+      Required = True
+      Size = 255
+    end
+    object fdCustomercreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object fdCustomerupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
+  end
+  object Qproses: TFDQuery
+    Left = 304
+    Top = 216
+  end
+  object rDBGridsPropSave1: TrDBGridsPropSave
+    Components.Strings = (
+      'rDBGridCustomer')
+    StoreColumnsProp = True
+    StoreFieldsGroup = True
+    StoreFooterRow = True
+    StoreDesignSetting = True
+    Left = 408
+    Top = 248
+  end
+end

@@ -277,7 +277,7 @@ frmartwork.fdartwork.Connection:=dm.FDConnection1;
 frmartwork.fdorder.Connection:=dm.FDConnection1;
 frmartwork.fdartwork.Connection:=dm.FDConnection1;
 frmartwork.fdorder.Connection:=dm.FDConnection1;
-frmartwork.fdartwork.Open('SELECT * FROM artworks WHERE priority = ''high'' ORDER BY created_at DESC');
+frmartwork.fdartwork.Open('SELECT * FROM artworks WHERE priority = ''high'' AND prepressstage = 0 ORDER BY created_at DESC');
 frmartwork.fdorder.Active := true;
 frmartwork.fdartwork.Active := true;
 frmArtwork.Caption := 'Hight Artworks';

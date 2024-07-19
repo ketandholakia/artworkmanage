@@ -8,7 +8,7 @@ SqlTimSt, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, Sys
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.DBCtrls, Vcl.Mask,
-  RzButton, Vcl.ExtCtrls;
+  RzButton, Vcl.ExtCtrls, rDBComponents;
 
 type
   Tfrmorderedit = class(TForm)
@@ -36,6 +36,9 @@ type
     fdorderpriority: TStringField;
     fdorderurl: TStringField;
     fdorderremark: TStringField;
+    rDBCheckBoxcomplted: TrDBCheckBox;
+    fdordercompleted: TBooleanField;
+    DBCheckBox1: TDBCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnsaveClick(Sender: TObject);
