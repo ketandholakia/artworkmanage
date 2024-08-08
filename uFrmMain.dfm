@@ -131,6 +131,18 @@ object FrmMain: TFrmMain
       Caption = 'Brand Name'
       OnClick = BrandName1Click
     end
+    object Dies1: TMenuItem
+      Caption = 'Dies'
+      object RotaryDie1: TMenuItem
+        Caption = 'Rotary Dies'
+      end
+      object RotaryDie2: TMenuItem
+        Caption = 'Flatbed Dies'
+      end
+      object IrregularDies1: TMenuItem
+        Caption = 'Irregular Dies'
+      end
+    end
   end
   object DBGridsPropSave1: TDBGridsPropSave
     PropSaveMain = PropSaveMain1

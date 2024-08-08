@@ -15,6 +15,7 @@ object frmArtwork: TfrmArtwork
   Position = poMainFormCenter
   Visible = True
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

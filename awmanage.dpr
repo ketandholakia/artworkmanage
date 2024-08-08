@@ -3,16 +3,6 @@ program awmanage;
 uses
   {$IFDEF EurekaLog}
   EMemLeaks,
-  EResLeaks,
-  EDebugExports,
-  EDebugJCL,
-  EFixSafeCallException,
-  EMapWin32,
-  EAppVCL,
-  EDialogWinAPIMSClassic,
-  EDialogWinAPIEurekaLogDetailed,
-  EDialogWinAPIStepsToReproduce,
-  ExceptionLog7,
   {$ENDIF EurekaLog}
   Vcl.Forms,
   uFrmMain in 'uFrmMain.pas' {FrmMain},
@@ -29,7 +19,10 @@ uses
   ufrmOrderEdit in 'ufrmOrderEdit.pas' {frmorderedit},
   ufrmtechnname in 'ufrmtechnname.pas' {frmtechname},
   ufrmBrandname in 'ufrmBrandname.pas' {frmbrandname},
-  ufrmartworkimport in 'ufrmartworkimport.pas' {frmartworkimport};
+  ufrmartworkimport in 'ufrmartworkimport.pas' {frmartworkimport},
+  ufrmsettings in 'ufrmsettings.pas' {frmsettings},
+  ufrmDie in 'ufrmDie.pas' {Form2},
+  ufrmCylinder in 'ufrmCylinder.pas' {Form3};
 
 {$R *.res}
 
@@ -40,8 +33,11 @@ begin
   Application.CreateForm(TDm, Dm);
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(Tfrmartworkimport, frmartworkimport);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TForm3, Form3);
   Application.Run;
 end.
+
 
 
 

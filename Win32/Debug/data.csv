@@ -1,14 +1,48 @@
 ﻿artworks_order_id,description,requiredqty,priority,awstatus,prepressstage
-1117,ketan - 01 - 023 - SNOW CRON - PROFENOPHOS 50% EC 1 ltr pet - 1400.cdr,1400,medium,pending,0
-1117,ketan - 02 - 023 - SNOW CRON - PROFENOPHOS 50% EC 500 ml pet - 2650.cdr,2650,medium,pending,0
-1117,ketan - 04 - 023 - SNOW VIT Sulphur 1 kg pouch - 1200 Set.cdr,1200,medium,pending,0
-1117,ketan - 05 - 023 - SNOW MUARBANI - Azarichidtin 0.03% Ec 500 ml pet - 2300.cdr,2300,medium,pending,0
-1117,ketan - 06 - 023 - SNOW KING - manco + cymoxa 1 kg pouch - 1600 set.cdr,1600,medium,pending,0
-1117,ketan - 07 - 023 - SNOW KING - manco + cymoxa 500 grm pouch - 3000 set.cdr,3000,medium,pending,0
-1117,ketan - Box label - 01 - 023 - SNOW CRON - Profeno 50% ec 1 ltr x 10 - 150.cdr,150,medium,pending,0
-1117,ketan - Box label - 02 - 023 - SNOW CRON - Profeno 50% ec 500 ml x 20  - 150.cdr,150,medium,pending,0
-1117,ketan - Box label - 03 - 023 - SNOWKING - mancozeb 200 grm x 50 - 150.cdr,150,medium,pending,0
-1117,ketan - BOX LABEL - 04 - 023 - SNOW VIT - Sulphur for 1 kg pouch  - 150.cdr,150,medium,pending,0
-1117,ketan - Box label  - 05 - 023 - SNOW MUARBANI- Azarichidtin 0.03%ec 500 ml x 20 - 150.cdr,150,medium,pending,0
-1117,ketan - Box Label - 06 - 023 - SNOWKING - manco + cymoxa - 1 kg x 10 - 200.cdr,200,medium,pending,0
-1117,ketan - Box Label - 07 - 023 - SNOWKING - manco + cymoxa - 500G X 20.cdr,200,medium,pending,0
+1217,KAZASHI - 250ML - 4100 - SHEET - NO A/W,4100,medium,pending,0
+1217,KAZASHI - 1000ML - 3200 - SHEET - NO A/W,3200,medium,pending,0
+1217,SAIKIN - BOX - 1000 - BOX - NO A/W,1000,medium,pending,0
+1217,KIZUNA - BOX - 1000 - BOX - NO A/W,1000,medium,pending,0
+1217,KASHIMA - BOX - 8500 - BOX - OLD,8500,medium,pending,0
+1217,ANIKI - BOX - 1135 - BOX - OLD,1135,medium,pending,0
+1217,GENKI PLUS - BOX - 1960 - BOX - OLD,1960,medium,pending,0
+1217,GOZARU - BOX - 1025 - BOX - OLD,1025,medium,pending,0
+1217,HIMAWARI - BOX - 3060 - BOX - OLD,3060,medium,pending,0
+1217,PIKAPIKA - BOX - 1000 - BOX - OLD,1000,medium,pending,0
+1217,NOBIRU - 5000ML - 1020 - SHEET - NEW,1020,medium,pending,0
+1217,NOBIRU - BOX - 2550 - BOX - OLD,2550,medium,pending,0
+1217,KINKI - 1000ML - 4100 - SHEET - OLD,4100,medium,pending,0
+1217,KINKI - 5000ML - 210 - SHEET - NEW,210,medium,pending,0
+1217,KINKI - BOX - 1000 - BOX - OLD,1000,medium,pending,0
+1217,TEBURA - 500ML - 10200 - ROLL - NO A/W,10200,medium,pending,0
+1217,TEBURA - 1000ML - 5100 - SHEET - NO A/W,5100,medium,pending,0
+1217,TEBURA - BOX - 1025 - BOX - NO A/W,1025,medium,pending,0
+1217,SHOKU - BOX - 1000 - BOX - OLD,1000,medium,pending,0
+1217,TANOSHI - BOX - 1630 - BOX - OLD,1630,medium,pending,0
+1217,YAMATO - BOX - 1000 - BOX - OLD,1000,medium,pending,0
+1217,SURUGA - 120GM - 8500 - ROLL - OLD,8500,medium,pending,0
+1217,SURUGA - 250GM - 2040 - SHEET - OLD,2040,medium,pending,0
+1217,SURUGA - 500GM - 1020 - SHEET - OLD,1020,medium,pending,0
+1217,SURUGA - BOX - 1000 - BOX - OLD,1000,medium,pending,0
+1217,SODATSU - BOX - 1540 - BOX - OLD,1540,medium,pending,0
+1217,ATARI - BOX - 2550 - BOX - OLD,2550,medium,pending,0
+1217,FURUSATO - 100ML - 20400 - ROLL - NEW,20400,medium,pending,0
+1217,FURUSATO - 250ML - 4100 - SHEET - NEW,4100,medium,pending,0
+1217,FURUSATO - BOX - 1230 - BOX - NEW,1230,medium,pending,0
+1217,HIBIKI - 250ML - 8100 - ROLL - OLD,8100,medium,pending,0
+1217,HIBIKI - 500ML - 16300 - ROLL - OLD,16300,medium,pending,0
+1217,HIBIKI - 1000ML - 6100 - ROLL - OLD,6100,medium,pending,0
+1217,HIBIKI - BOX - 1660 - BOX - OLD,1660,medium,pending,0
+1217,ZAKIYAMA - 1000ML - 51000 - ROLL - OLD,51000,medium,pending,0
+1217,ZAKIYAMA - BOX - 5100 - BOX - OLD,5100,medium,pending,0
+1217,KABUTO - 500ML - 6100 - ROLL - OLD,6100,medium,pending,0
+1217,KABUTO - 1000ML - 16300 - ROLL - OLD,16300,medium,pending,0
+1217,KABUTO - 5000ML - 3200 - SHEET - OLD,3200,medium,pending,0
+1217,KABUTO - BOX - 3600 - BOX - OLD,3600,medium,pending,0
+1217,SUKOYAKA - 250ML - 8100 - ROLL - OLD,8100,medium,pending,0
+1217,SUKOYAKA - 500ML - 6100 - ROLL - OLD,6100,medium,pending,0
+1217,SUKOYAKA - BOX - 1030 - BOX - OLD,1030,medium,pending,0
+1217,KAGUYA - BOX - 2170 - BOX - OLD,2170,medium,pending,0
+1217,IRUKA - 200ML - 10200 - ROLL - OLD,10200,medium,pending,0
+1217,IRUKA - 500ML - 8100 - ROLL - OLD,8100,medium,pending,0
+1217,IRUKA - BOX - 1190 - BOX - OLD,1190,medium,pending,0

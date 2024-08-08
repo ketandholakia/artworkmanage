@@ -190,8 +190,8 @@ object Dm: TDm
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT * FROM orders ')
-    Left = 32
-    Top = 200
+    Left = 40
+    Top = 144
     object fdorderid: TLargeintField
       AutoGenerateValue = arAutoInc
       FieldName = 'id'
@@ -513,5 +513,93 @@ object Dm: TDm
     DataSet = FDgroupmember
     Left = 587
     Top = 397
+  end
+  object fdsettings: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM settings')
+    Left = 400
+    Top = 432
+    object fdsettingsid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ReadOnly = True
+    end
+    object fdsettingssetting_name: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'setting_name'
+      Origin = 'setting_name'
+      Size = 50
+    end
+    object fdsettingssetting_boolean: TBooleanField
+      AutoGenerateValue = arDefault
+      FieldName = 'setting_boolean'
+      Origin = 'setting_boolean'
+    end
+    object fdsettingssetting_value: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'setting_value'
+      Origin = 'setting_value'
+      Size = 150
+    end
+  end
+  object RlConnection: TFDConnection
+    Params.Strings = (
+      'ConnectionDef=rl')
+    Connected = True
+    LoginPrompt = False
+    Left = 249
+    Top = 48
+  end
+  object CylindersTable: TFDQuery
+    Connection = RlConnection
+    SQL.Strings = (
+      'SELECT * FROM rl.cylinders')
+    Left = 337
+    Top = 216
+    object CylindersTableid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object CylindersTableteeth: TIntegerField
+      FieldName = 'teeth'
+      Origin = 'teeth'
+      Required = True
+    end
+    object CylindersTablecircumference_mm: TBCDField
+      FieldName = 'circumference_mm'
+      Origin = 'circumference_mm'
+      Required = True
+      Precision = 8
+      Size = 2
+    end
+    object CylindersTablecircumference_inch: TBCDField
+      FieldName = 'circumference_inch'
+      Origin = 'circumference_inch'
+      Required = True
+      Precision = 8
+      Size = 2
+    end
+    object CylindersTablemachine1: TBooleanField
+      FieldName = 'machine1'
+      Origin = 'machine1'
+      Required = True
+    end
+    object CylindersTablemachine2: TBooleanField
+      FieldName = 'machine2'
+      Origin = 'machine2'
+      Required = True
+    end
+    object CylindersTablecreated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'created_at'
+      Origin = 'created_at'
+    end
+    object CylindersTableupdated_at: TSQLTimeStampField
+      AutoGenerateValue = arDefault
+      FieldName = 'updated_at'
+      Origin = 'updated_at'
+    end
   end
 end

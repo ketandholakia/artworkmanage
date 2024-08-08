@@ -26,7 +26,6 @@ object frmOrder: TfrmOrder
     Height = 41
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 919
     object Label11: TLabel
       Left = 18
       Top = 12
@@ -84,7 +83,6 @@ object frmOrder: TfrmOrder
     Height = 387
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 919
     object rDBgridArtwork: TrDBGrid
       Left = 0
       Top = 0
@@ -183,7 +181,6 @@ object frmOrder: TfrmOrder
     Height = 185
     Align = alTop
     TabOrder = 2
-    ExplicitWidth = 919
     object rdbgridOrder: TrDBGrid
       Left = 0
       Top = 0
@@ -262,7 +259,6 @@ object frmOrder: TfrmOrder
     Height = 41
     Align = alTop
     TabOrder = 3
-    ExplicitWidth = 919
     object Label7: TLabel
       Left = 12
       Top = 14
@@ -321,7 +317,6 @@ object frmOrder: TfrmOrder
     BorderSides = [sdTop]
     BorderWidth = 0
     TabOrder = 4
-    ExplicitWidth = 919
     ToolbarControls = (
       RzToolButtonaddartwork
       RzSpacer1

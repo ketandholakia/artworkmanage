@@ -3,7 +3,8 @@ unit uFrmArtwork;
 interface
 
 uses
-  SqlTimSt, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+
+System.UITypes, SqlTimSt, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, Vcl.Grids,
@@ -98,6 +99,7 @@ type
     procedure RzToolButton2Click(Sender: TObject);
     procedure RzToolButton3Click(Sender: TObject);
     procedure BtnDownClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
     procedure CloseDataSets;
@@ -367,6 +369,17 @@ begin
 end;
 
 
+procedure TfrmArtwork.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+    if (Key = vkW) and (ssCtrl in Shift) then
+    begin
+        if Assigned(ActiveMDIChild) then
+            ActiveMDIChild.Close;
+    end;
+    end;
+
+
 procedure TfrmArtwork.FormShow(Sender: TObject);
 begin
 rDBgridArtwork.SetFocus;
@@ -409,6 +422,12 @@ if fdArtwork.FieldByName('prepressstage').AsBoolean = false then
  begin
    rDBgridArtwork.Canvas.Font.Color := clBlack;
    rDBgridArtwork.canvas.Brush.Color := clWebKhaki;
+ end;
+
+ if fdArtwork.FieldByName('awstatus').asstring = 'sentforapproval' then
+ begin
+   rDBgridArtwork.Canvas.Font.Color := clBlack;
+   rDBgridArtwork.canvas.Brush.Color := clWebPink;
  end;
 
 end;

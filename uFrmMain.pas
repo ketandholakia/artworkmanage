@@ -39,6 +39,10 @@ type
     BrandName1: TMenuItem;
     ImportArtworks1: TMenuItem;
     Artworks1: TMenuItem;
+    Dies1: TMenuItem;
+    RotaryDie1: TMenuItem;
+    RotaryDie2: TMenuItem;
+    IrregularDies1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure DataSupplier1Click(Sender: TObject);
     procedure Orders1Click(Sender: TObject);

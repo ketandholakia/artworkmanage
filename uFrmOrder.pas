@@ -389,17 +389,26 @@ begin
 
 
 
-if fdArtworkDetailTable.FieldByName('prepressstage').AsBoolean = true then
- begin
-   rDBgridArtwork.Canvas.Font.Color := clBlack;
-  rDBgridArtwork.canvas.Brush.Color := clWebPaleGreen;
- end;
 
 if fdArtworkDetailTable.FieldByName('prepressstage').AsBoolean = false then
  begin
    rDBgridArtwork.Canvas.Font.Color := clBlack;
    rDBgridArtwork.canvas.Brush.Color := clWebSandyBrown;
  end;
+
+  if fdArtworkDetailTable.FieldByName('awstatus').asstring = 'sentforapproval' then
+ begin
+   rDBgridArtwork.Canvas.Font.Color := clBlack;
+   rDBgridArtwork.canvas.Brush.Color := clWebPink;
+ end;
+
+
+ if fdArtworkDetailTable.FieldByName('prepressstage').AsBoolean = true then
+ begin
+   rDBgridArtwork.Canvas.Font.Color := clBlack;
+  rDBgridArtwork.canvas.Brush.Color := clWebPaleGreen;
+ end;
+
 
 end;
 

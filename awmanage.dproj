@@ -134,6 +134,17 @@
         <DCCReference Include="ufrmartworkimport.pas">
             <Form>frmartworkimport</Form>
         </DCCReference>
+        <DCCReference Include="ufrmsettings.pas">
+            <Form>frmsettings</Form>
+        </DCCReference>
+        <DCCReference Include="ufrmDie.pas">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ufrmCylinder.pas">
+            <Form>Form3</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
